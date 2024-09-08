@@ -3,6 +3,9 @@
  */
 
 package com.mycompany.distribuidora;
+import com.mycompany.distribuidora.view.Interface;
+
+
 
 /**
  *
@@ -11,6 +14,7 @@ package com.mycompany.distribuidora;
 public class Distribuidora {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Interface tela = new Interface();
+        tela.desenha();
     }
 }
