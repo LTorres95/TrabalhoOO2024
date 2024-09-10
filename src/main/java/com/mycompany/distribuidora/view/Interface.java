@@ -38,8 +38,10 @@ public class Interface {
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLocationRelativeTo(null);
         tela.setLayout(new BorderLayout());
+//        tela.setResizable(false);
         
-        desenhaTelaInicial();
+//        desenhaTelaInicial();
+        desenhaCadastro();
         
         tela.pack();
     }
@@ -47,15 +49,63 @@ public class Interface {
     private void desenhaTelaInicial(){
         JPanel painel = new JPanel();
         painel.setBorder(BorderFactory.createTitledBorder("Tela inicial"));
+        painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        painel.setLayout(new BorderLayout());
         
-        JButton btnLogin = new JButton("Login");
-        JButton btnCadastro = new JButton("Cadastro");
+        JButton btnEntrar = new JButton("Entrar");
+        JButton btnCadastrar = new JButton("Cadastrar");
 
         JPanel botoes = new JPanel();
-        botoes.add(btnLogin);
-        botoes.add(btnCadastro);
+        botoes.add(btnEntrar);
+        botoes.add(btnCadastrar);
         
         painel.add(botoes, BorderLayout.SOUTH);
+        
+        tela.getContentPane().add(painel, BorderLayout.CENTER);
+    }
+    
+    private void desenhaCadastro(){
+        JPanel painel = new JPanel();
+        painel.setBorder(BorderFactory.createTitledBorder("Cadastro"));
+        painel.setPreferredSize(new Dimension(500, 500));
+        painel.setLayout(new BorderLayout());
+        
+        JPanel login = new JPanel();
+        JPanel painelLabel = new JPanel();
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        painelLabel.add(new JLabel("Nome"));
+        //FAZER CASO PARA EMPRESA E PESSOA FISICA:
+        //SE PESSOA FISICA ----> painelLabel.add(new JLabel("CPF"));
+        //SE PESSOA JURIDICA ---> painelLabel.add(new JLabel("CNPJ"));
+        painelLabel.add(new JLabel("Telefone"));
+        painelLabel.add(new JLabel("Email"));
+        painelLabel.add(new JLabel("Senha"));
+        
+        JPanel painelField = new JPanel();
+        painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        tfNome = new JTextField(20);
+        tfEmail = new JTextField(20);
+        //** PESSOA FISICA || PESSOA JURIDICA **
+        tfTelefone = new JTextField(20);
+        tfSenha = new JTextField(20);
+        
+        painelField.add(tfNome);
+        painelField.add(tfEmail);
+        painelField.add(tfTelefone);
+        painelField.add(tfSenha);
+        
+        login.add(painelLabel);
+        login.add(painelField);
+        
+        painel.setLayout(new BorderLayout());
+        painel.add(login, BorderLayout.CENTER);
+        
+        JButton btnFimCadastro = new JButton("Finazizar Cadastro");
+//        CRIAR PERSISTENCIA PARA NOVO CADASTRO
+//        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
+        painel.add(btnFimCadastro, BorderLayout.SOUTH);
+        
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
 }
