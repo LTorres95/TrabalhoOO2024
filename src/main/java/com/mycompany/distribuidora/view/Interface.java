@@ -40,8 +40,7 @@ public class Interface {
         tela.setLayout(new BorderLayout());
 //        tela.setResizable(false);
         
-//        desenhaTelaInicial();
-        desenhaCadastro();
+        desenhaTelaInicial();
         
         tela.pack();
     }
@@ -54,6 +53,13 @@ public class Interface {
         
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenhaCadastro();
+            }
+            
+        });
 
         JPanel botoes = new JPanel();
         botoes.add(btnEntrar);
@@ -65,10 +71,12 @@ public class Interface {
     }
     
     private void desenhaCadastro(){
-        JPanel painel = new JPanel();
-        painel.setBorder(BorderFactory.createTitledBorder("Cadastro"));
-        painel.setPreferredSize(new Dimension(500, 500));
-        painel.setLayout(new BorderLayout());
+        JFrame painel = new JFrame("Cadastro");
+//        painel.setBorder(BorderFactory.createTitledBorder("Cadastro"));
+        painel.setSize(WIDTH, HEIGHT);
+//        painel.setPreferredSize(new Dimension(500, 500));
+        painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        painel.setVisible(true);
         
         JPanel login = new JPanel();
         JPanel painelLabel = new JPanel();
@@ -102,9 +110,21 @@ public class Interface {
         painel.add(login, BorderLayout.CENTER);
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
+        JButton btnVoltaTela = new JButton("Voltar para tela inicial");
+        btnVoltaTela.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenhaTelaInicial();
+                painel.dispose();
+            }
+        });
 //        CRIAR PERSISTENCIA PARA NOVO CADASTRO
 //        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
-        painel.add(btnFimCadastro, BorderLayout.SOUTH);
+        JPanel botoes = new JPanel();
+        botoes.add(btnFimCadastro);
+        botoes.add(btnVoltaTela);
+        
+        painel.add(botoes, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
