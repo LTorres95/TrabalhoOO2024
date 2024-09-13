@@ -51,6 +51,14 @@ public class Interface {
         painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         painel.setLayout(new BorderLayout());
         
+        JPanel login = new JPanel();
+        JPanel painelLabel = new JPanel();
+        
+        String[] tipos = {"CPF", "CNPJ"};
+        JComboBox tipoLogin = new JComboBox(tipos);
+        tipoLogin.setSelectedIndex(1);
+        
+        
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
@@ -78,7 +86,7 @@ public class Interface {
         painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         painel.setVisible(true);
         
-        JPanel login = new JPanel();
+        JPanel cadastro = new JPanel();
         JPanel painelLabel = new JPanel();
         painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
         painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
@@ -103,11 +111,11 @@ public class Interface {
         painelField.add(tfTelefone);
         painelField.add(tfSenha);
         
-        login.add(painelLabel);
-        login.add(painelField);
+        cadastro.add(painelLabel);
+        cadastro.add(painelField);
         
         painel.setLayout(new BorderLayout());
-        painel.add(login, BorderLayout.CENTER);
+        painel.add(cadastro, BorderLayout.CENTER);
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
         JButton btnVoltaTela = new JButton("Voltar para tela inicial");
