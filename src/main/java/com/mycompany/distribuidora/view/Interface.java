@@ -111,6 +111,13 @@ public class Interface {
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
         JButton btnVoltaTela = new JButton("Voltar para tela inicial");
+        btnVoltaTela.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenhaTelaInicial();
+                painel.dispose();
+            }
+        });
 //        CRIAR PERSISTENCIA PARA NOVO CADASTRO
 //        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
         JPanel botoes = new JPanel();
