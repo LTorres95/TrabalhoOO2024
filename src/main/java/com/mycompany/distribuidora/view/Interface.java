@@ -58,7 +58,7 @@ public class Interface {
             public void actionPerformed(ActionEvent e) {
                 desenhaCadastro();
             }
-        
+            
         });
 
         JPanel botoes = new JPanel();
@@ -110,9 +110,14 @@ public class Interface {
         painel.add(login, BorderLayout.CENTER);
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
+        JButton btnVoltaTela = new JButton("Voltar para tela inicial");
 //        CRIAR PERSISTENCIA PARA NOVO CADASTRO
 //        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
-        painel.add(btnFimCadastro, BorderLayout.SOUTH);
+        JPanel botoes = new JPanel();
+        botoes.add(btnFimCadastro);
+        botoes.add(btnVoltaTela);
+        
+        painel.add(botoes, BorderLayout.SOUTH);
         
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
