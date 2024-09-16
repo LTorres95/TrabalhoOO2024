@@ -24,6 +24,7 @@ public class Interface {
     private final int H_GAP = 5;
     
     private JTextField tfLogin;
+    private JTextField tfUsuario;
     private JTextField tfNome;
     private JTextField tfCpf;
     private JTextField tfCnpj;
@@ -64,15 +65,21 @@ public class Interface {
         
         JPanel painelField = new JPanel();
         painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
-        tfLogin = new JTextField(20);
+        tfUsuario = new JTextField(20);
         
-        painelField.add(tfLogin);
+        JPanel secondPainelField = new JPanel();
+        secondPainelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        tfSenha = new JTextField(20);
+        
+        painelField.add(tfUsuario);
+        secondPainelField.add(tfSenha);
 //        tfLogin --> verificar se é cpf ou cnpj usando as classes de tratamento a serem criadas
         
 //        consertar a formatação disso pra aparecer os 2:
         JPanel componentes = new JPanel();
         componentes.add(tipoLogin);
         componentes.add(painelField);
+        componentes.add(secondPainelField);
         
         painel.add(componentes, BorderLayout.CENTER);
 //        painel.add(tipoLogin);
