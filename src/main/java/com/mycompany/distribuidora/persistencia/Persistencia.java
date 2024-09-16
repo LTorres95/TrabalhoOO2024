@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.mycompany.distribuidora.persistencia;
 
-/**
- *
- * @author si
- */
-public interface Persistencia {
-    
+import java.util.List;
+
+
+public interface Persistencia<T> {
+    String DIRECTORY = "data";
+    public void save(List<T> itens);
+    public List<T> findAll();
 }
