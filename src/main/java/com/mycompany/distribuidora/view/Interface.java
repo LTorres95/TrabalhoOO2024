@@ -23,6 +23,8 @@ public class Interface {
     private final int V_GAP = 10;
     private final int H_GAP = 5;
     
+    private JTextField tfLogin;
+    private JTextField tfUsuario;
     private JTextField tfNome;
     private JTextField tfCpf;
     private JTextField tfCnpj;
@@ -51,6 +53,38 @@ public class Interface {
         painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         painel.setLayout(new BorderLayout());
         
+        String[] tipos = {"CPF", "CNPJ"};
+        JComboBox tipoLogin = new JComboBox(tipos);
+        tipoLogin.setSelectedIndex(1);
+        
+        JPanel login = new JPanel();
+        JPanel painelLabel = new JPanel();
+        
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        painelLabel.add(new JLabel("Login"));
+        
+        JPanel painelField = new JPanel();
+        painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        tfUsuario = new JTextField(20);
+        
+        JPanel secondPainelField = new JPanel();
+        secondPainelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        tfSenha = new JTextField(20);
+        
+        painelField.add(tfUsuario);
+        secondPainelField.add(tfSenha);
+//        tfLogin --> verificar se é cpf ou cnpj usando as classes de tratamento a serem criadas
+        
+//        consertar a formatação disso pra aparecer os 2:
+        JPanel componentes = new JPanel();
+        componentes.add(tipoLogin);
+        componentes.add(painelField);
+        componentes.add(secondPainelField);
+        
+        painel.add(componentes, BorderLayout.CENTER);
+//        painel.add(tipoLogin);
+//        painel.add(painelField);
+        
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
@@ -78,10 +112,10 @@ public class Interface {
         painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         painel.setVisible(true);
         
-        JPanel login = new JPanel();
+        JPanel cadastro = new JPanel();
         JPanel painelLabel = new JPanel();
         painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+//        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
         painelLabel.add(new JLabel("Nome"));
         //FAZER CASO PARA EMPRESA E PESSOA FISICA:
         //SE PESSOA FISICA ----> painelLabel.add(new JLabel("CPF"));
@@ -103,11 +137,11 @@ public class Interface {
         painelField.add(tfTelefone);
         painelField.add(tfSenha);
         
-        login.add(painelLabel);
-        login.add(painelField);
+        cadastro.add(painelLabel);
+        cadastro.add(painelField);
         
         painel.setLayout(new BorderLayout());
-        painel.add(login, BorderLayout.CENTER);
+        painel.add(cadastro, BorderLayout.CENTER);
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
         JButton btnVoltaTela = new JButton("Voltar para tela inicial");
