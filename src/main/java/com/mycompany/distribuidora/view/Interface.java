@@ -23,6 +23,7 @@ public class Interface {
     private final int V_GAP = 10;
     private final int H_GAP = 5;
     
+    private JTextField tfLogin;
     private JTextField tfNome;
     private JTextField tfCpf;
     private JTextField tfCnpj;
@@ -51,13 +52,31 @@ public class Interface {
         painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         painel.setLayout(new BorderLayout());
         
-        JPanel login = new JPanel();
-        JPanel painelLabel = new JPanel();
-        
         String[] tipos = {"CPF", "CNPJ"};
         JComboBox tipoLogin = new JComboBox(tipos);
         tipoLogin.setSelectedIndex(1);
         
+        JPanel login = new JPanel();
+        JPanel painelLabel = new JPanel();
+        
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        painelLabel.add(new JLabel("Login"));
+        
+        JPanel painelField = new JPanel();
+        painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        tfLogin = new JTextField(20);
+        
+        painelField.add(tfLogin);
+//        tfLogin --> verificar se é cpf ou cnpj usando as classes de tratamento a serem criadas
+        
+//        consertar a formatação disso pra aparecer os 2:
+        JPanel componentes = new JPanel();
+        componentes.add(tipoLogin);
+        componentes.add(painelField);
+        
+        painel.add(componentes, BorderLayout.CENTER);
+//        painel.add(tipoLogin);
+//        painel.add(painelField);
         
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
@@ -89,7 +108,7 @@ public class Interface {
         JPanel cadastro = new JPanel();
         JPanel painelLabel = new JPanel();
         painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+//        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
         painelLabel.add(new JLabel("Nome"));
         //FAZER CASO PARA EMPRESA E PESSOA FISICA:
         //SE PESSOA FISICA ----> painelLabel.add(new JLabel("CPF"));
