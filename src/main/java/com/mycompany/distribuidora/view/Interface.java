@@ -73,17 +73,14 @@ public class Interface {
         
         painelField.add(tfUsuario);
         secondPainelField.add(tfSenha);
-//        tfLogin --> verificar se é cpf ou cnpj usando as classes de tratamento a serem criadas
-        
-//        consertar a formatação disso pra aparecer os 2:
+
         JPanel componentes = new JPanel();
         componentes.add(tipoLogin);
         componentes.add(painelField);
         componentes.add(secondPainelField);
         
         painel.add(componentes, BorderLayout.CENTER);
-//        painel.add(tipoLogin);
-//        painel.add(painelField);
+
         
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
