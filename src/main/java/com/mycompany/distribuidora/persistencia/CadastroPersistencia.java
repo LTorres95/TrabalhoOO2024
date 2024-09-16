@@ -33,7 +33,23 @@ public class CadastroPersistencia implements Persistencia<Cadastro>  {
 
     @Override
     public List<Cadastro> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Gson gson = new Gson();
+
+        String json = Arquivo.le(PATH);
+
+        List<Cadastro> cadastros = new ArrayList<>();
+        if (!json.trim().equals("")) {
+
+            Type tipoLista = new TypeToken<List<Cadastro>>() {
+            }.getType();
+            cadastros = gson.fromJson(json, tipoLista);
+
+            if (cadastros == null) {
+                cadastros = new ArrayList<>();
+            }
+        }
+
+        return cadastros;
     }
     
 }
