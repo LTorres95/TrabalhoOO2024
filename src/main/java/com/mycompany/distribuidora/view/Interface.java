@@ -5,6 +5,8 @@
 package com.mycompany.distribuidora.view;
 
 
+import com.mycompany.distribuidora.model.Usuario;
+import com.mycompany.distribuidora.persistencia.UsuarioPersistencia;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -19,7 +21,8 @@ import java.util.List;
  * @author si
  */
 public class Interface {
-
+    
+    
     private JFrame tela;
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
@@ -34,6 +37,12 @@ public class Interface {
     private JTextField tfEmail;
     private JTextField tfTelefone;
     private JTextField tfSenha;
+    
+    private UsuarioPersistencia usuarioPersistencia;
+    
+    public Interface() {
+        usuarioPersistencia = new UsuarioPersistencia();
+    }
     
     public void desenha() {
 
@@ -158,6 +167,15 @@ public class Interface {
         painel.setVisible(true);
     }
     private void finalizarCadastro() {
+        String nome = tfNome.getText();
+        String telefone = tfTelefone.getText();
+        String email = tfEmail.getText();
+        String senha = tfSenha.getText();
+
+        Usuario usuario = new Usuario(nome, telefone, email, senha);
+
+        usuarioPersistencia.salvarUsuario(usuario);
+        
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }
 }
