@@ -1,4 +1,4 @@
-/*
+                        /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,6 +9,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -27,7 +30,7 @@ public class Interface {
     private JTextField tfUsuario;
     private JTextField tfNome;
     private JTextField tfCpf;
-    private JTextField tfCnpj;
+    private JTextField tfCnpj;      
     private JTextField tfEmail;
     private JTextField tfTelefone;
     private JTextField tfSenha;
@@ -35,7 +38,6 @@ public class Interface {
     public void desenha() {
 
         tela = new JFrame("Distribuidora");
-        tela.setVisible(true);
         tela.setSize(WIDTH, HEIGHT);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLocationRelativeTo(null);
@@ -45,13 +47,15 @@ public class Interface {
         desenhaTelaInicial();
         
         tela.pack();
+        tela.setVisible(true);
     }
     
     private void desenhaTelaInicial(){
         JPanel painel = new JPanel();
         painel.setBorder(BorderFactory.createTitledBorder("Tela inicial"));
-        painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+//        painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         painel.setLayout(new BorderLayout());
+        
         
         String[] tipos = {"CPF", "CNPJ"};
         JComboBox tipoLogin = new JComboBox(tipos);
@@ -102,52 +106,47 @@ public class Interface {
     }
     
     private void desenhaCadastro(){
-        JFrame painel = new JFrame("Cadastro");
+        JDialog painel = new JDialog(tela, "Cadastro", true);
 //        painel.setBorder(BorderFactory.createTitledBorder("Cadastro"));
         painel.setSize(WIDTH, HEIGHT);
 //        painel.setPreferredSize(new Dimension(500, 500));
         painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        painel.setVisible(true);
         
         JPanel cadastro = new JPanel();
-        JPanel painelLabel = new JPanel();
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
-//        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
-        painelLabel.add(new JLabel("Nome"));
+        cadastro.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        
+        cadastro.add(new JLabel("Nome:"));
+        tfNome = new JTextField(20);
+        cadastro.add(tfNome);
+        
         //FAZER CASO PARA EMPRESA E PESSOA FISICA:
         //SE PESSOA FISICA ----> painelLabel.add(new JLabel("CPF"));
         //SE PESSOA JURIDICA ---> painelLabel.add(new JLabel("CNPJ"));
-        painelLabel.add(new JLabel("Telefone"));
-        painelLabel.add(new JLabel("Email"));
-        painelLabel.add(new JLabel("Senha"));
-        
-        JPanel painelField = new JPanel();
-        painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
-        tfNome = new JTextField(20);
-        tfEmail = new JTextField(20);
-        //** PESSOA FISICA || PESSOA JURIDICA **
+        cadastro.add(new JLabel("Telefone:"));
         tfTelefone = new JTextField(20);
+        cadastro.add(tfTelefone);
+
+        cadastro.add(new JLabel("Email:"));
+        tfEmail = new JTextField(20);
+        cadastro.add(tfEmail);
+
+        cadastro.add(new JLabel("Senha:"));
         tfSenha = new JTextField(20);
+        cadastro.add(tfSenha);
+
+        painel.getContentPane().add(cadastro, BorderLayout.CENTER);
         
-        painelField.add(tfNome);
-        painelField.add(tfEmail);
-        painelField.add(tfTelefone);
-        painelField.add(tfSenha);
-        
-        cadastro.add(painelLabel);
-        cadastro.add(painelField);
         
         painel.setLayout(new BorderLayout());
         painel.add(cadastro, BorderLayout.CENTER);
         
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
+        btnFimCadastro.addActionListener(e -> finalizarCadastro());
+        
         JButton btnVoltaTela = new JButton("Voltar para tela inicial");
-        btnVoltaTela.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                desenhaTelaInicial();
-                painel.dispose();
-            }
+        btnVoltaTela.addActionListener(e -> {
+            painel.dispose();
+            desenhaTelaInicial();
         });
 //        CRIAR PERSISTENCIA PARA NOVO CADASTRO
 //        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
@@ -155,8 +154,10 @@ public class Interface {
         botoes.add(btnFimCadastro);
         botoes.add(btnVoltaTela);
         
-        painel.add(botoes, BorderLayout.SOUTH);
-        
-        tela.getContentPane().add(painel, BorderLayout.CENTER);
+        painel.getContentPane().add(botoes, BorderLayout.SOUTH);
+        painel.setVisible(true);
+    }
+    private void finalizarCadastro() {
+        JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }
 }
