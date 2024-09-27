@@ -1,4 +1,4 @@
-package controller;
+package com.mycompany.distribuidora.controller;
 
 import com.mycompany.distribuidora.model.Email;
 import com.mycompany.distribuidora.model.Telefone;

@@ -1,7 +1,7 @@
-package controller;
+package com.mycompany.distribuidora.controller;
 
 import com.mycompany.distribuidora.model.Telefone;
-import controller.Pessoa;
+import com.mycompany.distribuidora.controller.Pessoa;
 
 public class Gerente extends Pessoa {
 

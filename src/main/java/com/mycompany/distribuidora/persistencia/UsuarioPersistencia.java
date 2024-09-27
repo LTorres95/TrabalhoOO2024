@@ -4,7 +4,7 @@
  */
 package com.mycompany.distribuidora.persistencia;
 
-import controller.Usuario;
+import com.mycompany.distribuidora.controller.Usuario;
 
 import com.google.gson.reflect.TypeToken;
 
