@@ -9,17 +9,19 @@ public class Pessoa {
     Telefone telefone;
     Email email;
     String login;
-    //private String senha;
     private String endereco;
-    private String cpf;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Telefone telefone, String login) {
+    public Pessoa(String nome, Telefone telefone, String login, String endereco,
+            Email email)
+    {
         this.nome = nome;
         this.telefone = telefone;
-        this.login = email.getLogin();        
+        this.email = email;
+        this.login = email.getLogin();       
+        this.endereco = endereco;
     }
     
     public boolean validacpf(String cpf) {
@@ -99,11 +101,6 @@ public class Pessoa {
         return true;
     }
 
-    public static String imprimeCPF(String CPF) {
-        return(CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." +
-                CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -136,14 +133,4 @@ public class Pessoa {
 //        this.senha = senha;
 //    }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        if (validacpf(cpf))
-            this.cpf = cpf;
-        else
-            System.out.println("CPF invalido");
-    }
 }

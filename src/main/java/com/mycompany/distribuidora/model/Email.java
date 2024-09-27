@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class Email {
     private String email;
-    private String pt1;
+    private String login;
     private String dominio;
     
     public Email(String email) throws EmailException{
@@ -41,16 +41,23 @@ public class Email {
     
     String[] partes = email.split("@");
     
-    this.pt1 = partes[0];
+    this.login = partes[0];
     this.dominio = partes[1];
     }
     
     public String getLogin() {
-        return pt1;
+        return login;
     }
 
     public String getDominio() {
         return dominio;
     }
+
+    @Override
+    public String toString() {
+        return login + "@" + dominio;
+    }
+    
+    
 
 }
