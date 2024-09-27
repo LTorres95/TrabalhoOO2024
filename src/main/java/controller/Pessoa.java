@@ -1,11 +1,14 @@
-package com.mycompany.distribuidora.model;
+package controller;
 
+import com.mycompany.distribuidora.model.Email;
+import com.mycompany.distribuidora.model.Telefone;
 import java.util.InputMismatchException;
 
 public class Pessoa {
     private String nome;
-    private String telefone;
-    private String email;
+    Telefone telefone;
+    Email email;
+    String login;
     //private String senha;
     private String endereco;
     private String cpf;
@@ -13,10 +16,10 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, String email) {
+    public Pessoa(String nome, Telefone telefone, String login) {
         this.nome = nome;
         this.telefone = telefone;
-        this.email = email;
+        this.login = email.getLogin();        
     }
     
     public boolean validacpf(String cpf) {
@@ -117,19 +120,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefone() {
-        return telefone;
+        return telefone.getTelefone();
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(Telefone telefone) {
         this.telefone = telefone;
     }
 

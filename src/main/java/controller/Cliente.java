@@ -1,4 +1,7 @@
-package com.mycompany.distribuidora.model;
+package controller;
+
+import com.mycompany.distribuidora.model.Telefone;
+import controller.Pessoa;
 
 public class Cliente extends Pessoa{
     private static int idCliente;
@@ -7,7 +10,7 @@ public class Cliente extends Pessoa{
     public Cliente() {
     }
 
-    public Cliente(String nome, String telefone, String email) {
+    public Cliente(String nome, Telefone telefone, String email) {
         super(nome, telefone, email);
         idCliente = Cliente.idCliente++;
     }

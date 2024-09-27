@@ -1,0 +1,5 @@
+com\mycompany\distribuidora\view\Interface.class
+com\mycompany\distribuidora\view\Interface$1.class
+com\mycompany\distribuidora\model\Gerente.class
+com\mycompany\distribuidora\model\Cliente.class
+com\mycompany\distribuidora\persistencia\UsuarioPersistencia.class
