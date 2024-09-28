@@ -14,7 +14,12 @@ public class CNPJ {
     
     
     public CNPJ(String cnpj) throws CNPJFException{
-        setCNPJ(cnpj);
+        try{
+            setCNPJ(cnpj);
+        }
+        catch(CNPJFException e){
+            throw new CNPJFException();
+        }
     }
     
     public static boolean ehValido(String CNPJ) {

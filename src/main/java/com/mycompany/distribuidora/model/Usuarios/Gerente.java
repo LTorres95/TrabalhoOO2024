@@ -6,14 +6,17 @@ import com.mycompany.distribuidora.model.Telefone;
 import com.mycompany.distribuidora.model.Email;
 
 public class Gerente extends Pessoa {
-    private String senha;
-    private static int idGerente;
+    protected String senha;
+    protected static int idGerente=0;
     
 
     // Construtor privado para uso apenas dentro da classe
-    public Gerente(String nome, Telefone telefoneInput, String login, 
-            String endereco, Email email) throws EmailException, TelefoneException{
-        super(nome, telefoneInput, email.getLogin(), endereco, email);
+    public Gerente(String nome, String telefoneInput, String login, 
+            String endereco, String emailInput) throws EmailException,
+            TelefoneException{
+        super(nome, telefoneInput, 
+                emailInput.substring(0, emailInput.indexOf("@")), 
+                endereco, emailInput);
         idGerente++;
     }
 

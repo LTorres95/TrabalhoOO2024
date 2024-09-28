@@ -16,7 +16,12 @@ public class Telefone {
     
     
     public Telefone(String telefoneInput) throws TelefoneException{  
-        setTelefone(telefoneInput);
+        try{
+            setTelefone(telefoneInput);
+        }
+        catch (TelefoneException e){
+            throw new TelefoneException();
+        }
     }
 
     //telefone válido formato "(32)99175-2829"
