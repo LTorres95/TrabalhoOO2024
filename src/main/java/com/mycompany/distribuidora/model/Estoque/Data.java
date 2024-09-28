@@ -1,6 +1,6 @@
 package com.mycompany.distribuidora.model.Estoque;
 
-import com.mycompany.distribuidora.model.Estoque.exceptions.DataException;
+
 public class Data {
     private int dia;
     private int mes;
@@ -12,7 +12,7 @@ public class Data {
             return true;
         return false;
     }
-    Data(int d,int m,int a)throws DataException
+    Data(int d,int m,int a)
     {
         if(valid(d,0,30)&valid(a,0,3000)&valid(m,0,12))
         {

@@ -7,6 +7,13 @@ public class Lote {
     private int codigoLote;
 
 
+    Lote(Data dataAquisicao,int validade,int quantidadeDeItens,int codigoLote)
+    {
+        this.dataAquisicao=dataAquisicao;
+        this.validade=validade;
+        this.quantidadeDeItens=quantidadeDeItens;
+        this.codigoLote=codigoLote;
+    }
     public Data getAquisicao(){return dataAquisicao;}
     
     public int getValidade(){return validade;}
