@@ -13,7 +13,12 @@ public class CPF {
     private String cpf;
 
     public CPF  (String cpf) throws CPFException {
-        setCPF(cpf);
+        try{
+            setCPF(cpf);
+        }
+        catch (CPFException e){
+            throw new CPFException();
+        }
     }
     
     public boolean validaCPF (String cpf) {
