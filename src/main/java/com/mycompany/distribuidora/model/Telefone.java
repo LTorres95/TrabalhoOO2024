@@ -12,18 +12,21 @@ import com.mycompany.distribuidora.exception.TelefoneException;
  */
 public class Telefone {
     private String telefone;
-    private String ddd;
+    private int ddd;
     
     
-    public Telefone(String telefone) throws TelefoneException{  
+    public Telefone(String telefoneInput) throws TelefoneException{  
         setTelefone(telefone);
     }
     
     //telefone válido formato "(32)99175-2829"
     //tamanho 
-    public boolean validaTelefone(String telefone){
+    public boolean validaTelefone(String telefoneInput){
         if (telefone.charAt(0) != '(' || telefone.charAt(3) != ')'
                 || !telefone.contains("-"))
+            return false;
+        else if (!(Character.isDigit(telefone.charAt(1)) && 
+                Character.isDigit(telefone.charAt(2))))
             return false;
         
         else if (telefone.length()!=14 || telefone.length() != 13)
@@ -34,24 +37,20 @@ public class Telefone {
     }
     
     
-    public void setTelefone (String telefone) throws TelefoneException{
-        if (!validaTelefone(telefone)){
+    public void setTelefone (String telefoneInput) throws TelefoneException{
+        if (!validaTelefone(telefoneInput)){
             throw new TelefoneException();
         }       
         
-            this.ddd = telefone.substring(1, 3);
-            this.telefone = telefone.substring(5, telefone.length() - 4) 
+            this.ddd = Integer.parseInt(telefoneInput.substring(1, 3));
+            this.telefone = telefoneInput.substring(5, telefoneInput.length() - 4) 
                     + "-" + 
-                    telefone.substring(telefone.length() - 4);       
+                    telefoneInput.substring(telefoneInput.length() - 4);       
     }
     
-    public String getDdd() {
+    public int getDdd() {
         return ddd;
     }   
-
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
-    }
     
     public String getTelefone(){
         return telefone;
