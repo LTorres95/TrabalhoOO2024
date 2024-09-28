@@ -4,7 +4,7 @@
  */
 package com.mycompany.distribuidora.persistencia;
 
-import com.mycompany.distribuidora.model.Usuario;
+import com.mycompany.distribuidora.controller.Usuario;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -64,5 +64,5 @@ public class UsuarioPersistencia implements Persistencia<Usuario>  {
     public List<Usuario> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

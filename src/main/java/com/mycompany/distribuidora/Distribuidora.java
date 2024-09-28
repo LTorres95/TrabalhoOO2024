@@ -4,7 +4,7 @@
 
 package com.mycompany.distribuidora;
 import com.mycompany.distribuidora.view.Interface;
-
+import com.mycompany.distribuidora.controller.Pessoa;
 
 
 /**
