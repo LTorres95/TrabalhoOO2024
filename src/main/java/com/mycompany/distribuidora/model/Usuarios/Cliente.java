@@ -1,4 +1,4 @@
-package com.mycompany.distribuidora.controller;
+package com.mycompany.distribuidora.model.Usuarios;
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;

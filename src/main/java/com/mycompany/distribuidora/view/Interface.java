@@ -5,7 +5,7 @@
 package com.mycompany.distribuidora.view;
 
 
-import com.mycompany.distribuidora.controller.Usuario;
+import com.mycompany.distribuidora.model.Usuarios.Usuario;
 import com.mycompany.distribuidora.persistencia.UsuarioPersistencia;
 import javax.swing.*;
 import javax.swing.event.*;
