@@ -1,10 +1,14 @@
 package com.mycompany.distribuidora.model.Estoque;
 
+import java.util.*;
+
 public class Produto
 {
     private String nome;
     private int codigo;
     private double preco;
-    private int codFornecedor;
+    private List lotes;
+    private double imposto;
+    
 
 }
