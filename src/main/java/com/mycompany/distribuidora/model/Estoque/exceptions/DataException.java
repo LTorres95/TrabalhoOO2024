@@ -1,8 +1,8 @@
 package com.mycompany.distribuidora.model.Estoque.exceptions;
 
 public class DataException extends Exception{
-    public DataException()
+    public DataException(String message)
     { 
-        super("A data inserida eh invalida!");
+        super(message);
     }
 }

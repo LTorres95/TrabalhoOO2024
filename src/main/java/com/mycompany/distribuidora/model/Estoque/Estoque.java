@@ -15,31 +15,35 @@ public  class Estoque {
         promocoes= new ArrayList<>();
     }
     
-   private int codigoProdToIndex(int codigo)
+   private int codigoProdToIndex(int codigo) throws ProdutoException
    {
     for(int i=0;i<produtos.size();i++)
         if(produtos.get(i).getCodigo()==codigo)
             return i;
-        return -1;
+    throw new ProdutoException("Produto com codigo " + codigo + " nao encontrado");    
    }
    public List<Produto>getProdutos(){return produtos;}
    public List<Cupom>getCupons(){return cupons;}
    public List<Promocao>getPromocoes(){return promocoes;}
-   public int getQuantidadeIndex(int i)
+   
+   public int getQuantidadeIndex(int i) throws ProdutoException
    {
-        return produtos.get(i).getQuantidade();
+       if(i < 0 || i >= produtos.size()) 
+           throw new ProdutoException("Indice do produto invalido: " + i);
+       return produtos.get(i).getQuantidade();
    }
-   public int getQuantidade(int codProduto)
+   
+   public int getQuantidade(int codProduto) throws ProdutoException
    {
         for(int i=0;i<produtos.size();i++)
         {
             if(produtos.get(i).getCodigo()==codProduto)
                 return produtos.get(i).getQuantidade();
         }
-        return -1;
+        throw new ProdutoException("Codigo do produto " + codProduto + " nao encontrado");   
    }
 
-   public int getQuantidadeLote(int codProduto,int codLote)
+   public int getQuantidadeLote(int codProduto,int codLote) throws LoteException, ProdutoException
    {
         for(int i=0;i<produtos.size();i++)
         {
@@ -48,10 +52,13 @@ public  class Estoque {
                 return produtos.get(i).getLotePorCodigo(codLote).getQuantidade();
             }
         }
-        return -1;
+        throw new LoteException("Lote com codigo " + codLote + " nao encontrado no produto " + codProduto);
    }
-   public List<Produto> getNDiasProximoValidade(int nDias,Data data)
+   public List<Produto> getNDiasProximoValidade(int nDias,Data data) throws DataException, LoteException, ProdutoException
    {
+        if(nDias < 0) {
+            throw new DataException("O numero de dias nao pode ser negativo!");
+        }
         List<Produto> retorno= new ArrayList<>();
         for(int i=0;i<produtos.size();i++)
         {
@@ -75,9 +82,13 @@ public  class Estoque {
                 return true;
         return false;
    }
-   public double darBaixa(int codProduto,int codLote,int quantidade)
+   public double darBaixa(int codProduto,int codLote,int quantidade) throws ProdutoException, LoteException
    {
-        produtos.get(codigoProdToIndex(codProduto)).retirarQuantidade(codLote, quantidade);
+        Produto produto = produtos.get(codigoProdToIndex(codProduto));
+        if(!produto.loteCodigoExiste(codLote)) {
+            throw new LoteException("Lote com codigo " + codLote + " nao encontrado!");
+        }
+        produto.retirarQuantidade(codLote, quantidade);
         for(int i=0;i<promocoes.size();i++)
         {
             if(codProduto==promocoes.get(i).getCodigoProduto()){
@@ -89,11 +100,11 @@ public  class Estoque {
         
         
    }
-   public double darBaixaCupom(int codProduto,int codLote,int quantidade,int codCupom)  throws CupomException
+   public double darBaixaCupom(int codProduto,int codLote,int quantidade,int codCupom)  throws CupomException, ProdutoException
    {
         if(!cupomExiste(codCupom))
         {
-            throw new CupomException();
+            throw new CupomException("Cupom com codigo " + codCupom + " não existe!");
         }
         for(int i=0;i<cupons.size();i++)
         {
@@ -102,19 +113,27 @@ public  class Estoque {
                 return cupons.get(i).getValor()*quantidade;
             }
        }
-        
-
-       return -1.0;
+       throw new CupomException("Nao existe cupom para o produto com codigo " + codProduto);
    }
 
-   public void criarCupom(int codProduto,double novoValor,int codigoCupom)
+   public void criarCupom(int codProduto,double novoValor,int codigoCupom) throws PromocaoException, CupomException
    {
-        Cupom c=new Cupom(codProduto, novoValor, codigoCupom);
+        Cupom c = null;
+        try{
+           c=new Cupom(codProduto, novoValor, codigoCupom);
+        }catch (CupomException e) {
+           System.out.println("Erro ao criar um cupom " + e.getMessage());
+        }
         cupons.add(c);
    }
-   public void criarPromocao(int codProduto,double novoValor)
+   public void criarPromocao(int codProduto,double novoValor) throws PromocaoException
    {
-        Promocao p=new Promocao(codProduto,novoValor);
+        Promocao p = null;
+        try{
+            p=new Promocao(codProduto,novoValor);
+        }catch (PromocaoException ex) {
+           System.out.println("Erro ao criar uma promocao " + ex.getMessage());
+        }
         promocoes.add(p);
    }
 
@@ -122,7 +141,7 @@ public  class Estoque {
    {
         produtos.add(aSerAdicionado);
    }
-   public void adicionarEstoque(Lote aSerAdicionado,int codproduto)
+   public void adicionarEstoque(Lote aSerAdicionado,int codproduto) throws ProdutoException
    {
         int index=codigoProdToIndex(codproduto);
         Produto aux = produtos.get(index);
