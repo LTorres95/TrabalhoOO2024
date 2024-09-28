@@ -1,5 +1,7 @@
 package com.mycompany.distribuidora.controller;
 
+import com.mycompany.distribuidora.exception.EmailException;
+import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.Email;
 import com.mycompany.distribuidora.model.Telefone;
 
@@ -13,14 +15,15 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Telefone telefone, String login, String endereco,
-            Email email)
+    public Pessoa(String nome, Telefone telefoneInput, String login, String endereco,
+            Email email) throws EmailException, TelefoneException
     {
         this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.login = email.getLogin();       
+        this.telefone = telefoneInput;
+        this.login = this.email.getLogin();
         this.endereco = endereco;
+        this.email = email;               
+        
     }
     
 

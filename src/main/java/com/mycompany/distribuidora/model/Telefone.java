@@ -16,9 +16,9 @@ public class Telefone {
     
     
     public Telefone(String telefoneInput) throws TelefoneException{  
-        setTelefone(telefone);
+        setTelefone(telefoneInput);
     }
-    
+
     //telefone válido formato "(32)99175-2829"
     //tamanho 
     public boolean validaTelefone(String telefoneInput){
