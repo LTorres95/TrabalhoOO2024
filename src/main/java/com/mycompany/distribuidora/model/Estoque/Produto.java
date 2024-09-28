@@ -16,6 +16,7 @@ public class Produto
             return true;
         return false;
     }
+    
     private int getIndexLoteCodigo(int cod)
     {
         int aux=0;
@@ -26,6 +27,7 @@ public class Produto
         }
         return aux;
     }
+    public int getCodigo(){return codigo;}
     public Produto(int codigo,String nome,double preco,double imposto)
     {
         this.nome=nome;
@@ -69,6 +71,7 @@ public class Produto
         }
         return null;
     }
+    public int getNLotes(){return lotes.size();}
     public double getPreco()
     {
         return preco;
@@ -93,6 +96,10 @@ public class Produto
     {
         Lote aux=new Lote(dataAquisicao,validade,quantidade,codigoLote);
         lotes.add(aux);
+    }
+    public void cadastrarLote(Lote lote)
+    {
+        lotes.add(lote);
     }
     public void alterarPreco(Double valor)
     {
