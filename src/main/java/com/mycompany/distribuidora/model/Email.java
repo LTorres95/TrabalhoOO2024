@@ -17,7 +17,12 @@ public class Email {
     private String dominio;
     
     public Email(String email) throws EmailException{
-        setEmail(email);
+        try{
+            setEmail(email);
+        }
+        catch (EmailException e){
+            throw new EmailException();
+        }
     }
     
     private boolean ehValidoEmail(String email){

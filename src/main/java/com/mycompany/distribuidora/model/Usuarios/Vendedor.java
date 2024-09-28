@@ -2,29 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.distribuidora.controller;
+package com.mycompany.distribuidora.model.Usuarios;
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.CPF;
-import com.mycompany.distribuidora.model.Email;
-import com.mycompany.distribuidora.model.Telefone;
 
 /**
  *
  * @author ltmar
  */
 public class Vendedor extends Pessoa{
-    private static int idVendedor=0;
-    private String senha;
-    CPF cpf;
+    protected static int idVendedor=0;
+    protected String senha;
+    protected CPF cpf;
     
 
-    public Vendedor(String nome, Telefone telefone, String login, 
-            String endereco, Email email) 
+    public Vendedor(String nome, String telefoneInput, String login, 
+            String endereco, String emailInput) 
             throws EmailException, TelefoneException{
         
-        super(nome, telefone, email.getLogin(), endereco, email);
+        super(nome, telefoneInput, 
+                emailInput.substring(0, emailInput.indexOf("@")), 
+                endereco, emailInput);
         idVendedor = Vendedor.idVendedor++;
         
     }

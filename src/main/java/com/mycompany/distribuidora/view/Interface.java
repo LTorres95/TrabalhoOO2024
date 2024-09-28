@@ -5,8 +5,8 @@
 package com.mycompany.distribuidora.view;
 
 
-import com.mycompany.distribuidora.controller.Usuario;
-import com.mycompany.distribuidora.persistencia.UsuarioPersistencia;
+import com.mycompany.distribuidora.model.Usuarios.Pessoa;
+import com.mycompany.distribuidora.model.Usuarios.Usuario;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -172,7 +172,7 @@ public class Interface {
         String email = tfEmail.getText();
         String senha = tfSenha.getText();
 
-        Usuario usuario = new Usuario(nome, telefone, email, senha);
+        Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email);
 
         usuarioPersistencia.salvarUsuario(usuario);
 

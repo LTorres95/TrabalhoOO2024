@@ -1,4 +1,4 @@
-package com.mycompany.distribuidora.controller;
+package com.mycompany.distribuidora.model.Usuarios;
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
@@ -6,23 +6,33 @@ import com.mycompany.distribuidora.model.Email;
 import com.mycompany.distribuidora.model.Telefone;
 
 public class Pessoa {
-    private String nome;
-    Telefone telefone;
-    Email email;
-    String login;
-    private String endereco;
+    protected String nome;
+    protected Telefone telefone;
+    protected Email email;
+    protected String login;
+    protected String endereco;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Telefone telefoneInput, String login, String endereco,
-            Email email) throws EmailException, TelefoneException
+    public Pessoa(String nome, String telefoneInput, String login, String endereco,
+            String emailInput) throws EmailException, TelefoneException
     {
         this.nome = nome;
-        this.telefone = telefoneInput;
+        try{
+            this.telefone = new Telefone(telefoneInput);
+        }
+        catch(TelefoneException e) {
+            throw new TelefoneException();
+        }
         this.login = this.email.getLogin();
         this.endereco = endereco;
-        this.email = email;               
+        try {
+            this.email = new Email(emailInput);
+        }   
+        catch (EmailException e){
+            throw new EmailException();
+        }
         
     }
     
