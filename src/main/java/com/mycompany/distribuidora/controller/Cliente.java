@@ -1,5 +1,7 @@
 package com.mycompany.distribuidora.controller;
 
+import com.mycompany.distribuidora.exception.EmailException;
+import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.CPF;
 import com.mycompany.distribuidora.model.Telefone;
 import com.mycompany.distribuidora.model.Email;
@@ -11,11 +13,9 @@ public class Cliente extends Pessoa{
     CPF cpf;
     
 
-    public Cliente() {
-    }
-
     public Cliente(String nome, Telefone telefone, String login, 
-            String endereco, Email email) {
+            String endereco, Email email) 
+            throws EmailException, TelefoneException{
         super(nome, telefone, email.getLogin(), endereco, email);
         idCliente = Cliente.idCliente++;
         

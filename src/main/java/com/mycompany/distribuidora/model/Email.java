@@ -37,7 +37,7 @@ public class Email {
     if (!ehValidoEmail(email))
         throw new EmailException();
     
-    this.email = email;
+    this.email = email; 
     
     String[] partes = email.split("@");
     
