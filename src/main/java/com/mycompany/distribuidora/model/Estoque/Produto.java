@@ -151,4 +151,5 @@ public class Produto {
             if(lotes.get(i).getCodigoLote()==codLote)
                 lotes.remove(i);
     }
+    public list<Lote> getLotes(){return lotes;}
 }
