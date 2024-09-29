@@ -15,12 +15,41 @@ public  class Estoque {
         promocoes= new ArrayList<>();
     }
     
+   
+   public Produto getProduto(int codProduto)
+   {
+        for(int i=0;i<produtos.size();i++)
+            if(produtos.get(i).getCodigo()==codProduto)
+                return produtos.get(i);
+        return null;
+   }
+   public void removeQuantidadeDeLote(int quantidade,int codProduto,int codLote)
+   {
+    Produto pAux=getProduto(codProduto);
+    Lote lAux=pAux.getLotePorCodigo(codLote);
+    lAux.adicionaQuantidadeLote(quantidade);
+    pAux.removeLote(codLote);
+    pAux.cadastrarLote(lAux);
+    produtos.remove(codigoProdToIndex(codProduto));
+    produtos.add(pAux);
+   }
+   public Lote getLote(int codProduto,int codLote)
+   {
+        return getProduto(codProduto).getLotePorCodigo(codLote);
+   }
    public int codigoProdToIndex(int codigo)
    {
     for(int i=0;i<produtos.size();i++)
         if(produtos.get(i).getCodigo()==codigo)
             return i;
         return -1;
+   }
+   public Cupom getCupomPorCodigo(int codCupom)
+   {
+        for(int i=0;i<cupons.size();i++)
+            if(cupons.get(i).getCodigoCupom()==codCupom)
+                return cupons.get(i);
+        return null;
    }
    public List<Produto>getProdutos(){return produtos;}
    public List<Cupom>getCupons(){return cupons;}

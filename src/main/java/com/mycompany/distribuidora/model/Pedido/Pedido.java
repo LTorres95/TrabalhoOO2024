@@ -11,6 +11,7 @@ public class Pedido {
     private int codigoPedido;
     private double total;
     private Estoque estoque;
+    private List<Integer> cupons;
 
     Pedido(int codigo,Estoque estoque)
     {
@@ -18,6 +19,7 @@ public class Pedido {
         codigoPedido=codigo;
         total=0;
         this.estoque=estoque;
+        cupons= new ArrayList<>();    
     }
 
     public boolean estaNaLista(int codProduto)
@@ -35,7 +37,7 @@ public class Pedido {
         return -1;
     }
 
-    public void adicionaProduto(int codigoProduto,String nome,int codLote,int quantidade,Data aquisicao,int validade,double imposto) throws PedidoException
+    public void adicionaProduto(int codigoProduto,int codLote,int quantidade) throws PedidoException
     {
         if(quantidade<0)
             throw new PedidoException("Tentativa de solicitar uma quantidade negativa de um produto!");
@@ -60,13 +62,20 @@ public class Pedido {
             }
             else
             {
+                int index=estoque.codigoProdToIndex(codigoProduto);
+                Data aquisicao=estoque.getProdutos().get(index).getLotePorCodigo(codLote).getAquisicao();
+                int validade = estoque.getProdutos().get(index).getLotePorCodigo(codLote).getValidade();
                 aux.cadastrarLote(aquisicao,validade,quantidade,codLote);
             }
         }
         else
         {
-            Produto aux= new Produto(codigoProduto, nome, quantidade,imposto);
-            aux.cadastrarLote(aquisicao,validade,quantidade,codLote);
+            int index=estoque.codigoProdToIndex(codigoProduto);
+            Lote aux=estoque.getProdutos().get(index).getLotePorCodigo(codLote);
+            aux.adicionaQuantidadeLote(-aux.getQuantidade());
+            aux.adicionaQuantidadeLote(quantidade);
+            Produto prodAux= new Produto(codigoProduto, estoque.getProdutos().get(index).getNome(), quantidade,estoque.getProdutos().get(index).getImposto());
+            prodAux.cadastrarLote(aux);
         }
         
     }
@@ -90,5 +99,72 @@ public class Pedido {
             throw new PedidoException("Exception ao tentar remover produto que sequer estah na lista de produtos!");
         produtos.remove(indexOfProduto(codProduto));
 
+    }
+    public void aplicaCupom(int codCupom) throws PedidoException
+    {
+        if(!estoque.cupomExiste(codCupom))
+            throw new PedidoException("Tentativa de utilizar um cupom que nao existe!");
+        
+        cupons.add(codCupom);
+    }
+
+    public double efetivaCompra()
+    {
+        double auxTotal=0;
+        List<Integer> itensComCupom=new ArrayList<>();
+        Set<Produto> efetivados = new HashSet<>();
+        List<Cupom> cuponsEstoque=estoque.getCupons();
+        for(int i=0;i<cupons.size();i++) // baixa com cupom
+        {   
+            int codigoProdutoDesseCupom=estoque.getCupomPorCodigo(cupons.get(i)).getCodigoProduto();
+            int quantidadeParaCupom=estoque.getProduto(codigoProdutoDesseCupom).getQuantidade();
+            double precoDesseCupom = estoque.getCupomPorCodigo(cupons.get(i)).getValor();
+            auxTotal+=precoDesseCupom*quantidadeParaCupom;
+            for(int j=0;j<produtos.get(indexOfProduto(codigoProdutoDesseCupom)).getNLotes();j++)
+            {
+                int codigoDeLoteAux=produtos.get(indexOfProduto(codigoProdutoDesseCupom)).getLotePorIndice(j).getCodigoLote();
+                int quantidadeLote = produtos.get(indexOfProduto(codigoProdutoDesseCupom)).getLotePorIndice(j).getQuantidade();
+                estoque.removeQuantidadeDeLote(quantidadeLote, codigoProdutoDesseCupom, codigoDeLoteAux);
+            }
+            efetivados.add(produtos.get(indexOfProduto(codigoProdutoDesseCupom)));
+        }
+        for(int i=0;i<produtos.size();i++) // baixa com promocao
+        {
+            if(!efetivados.contains(produtos.get(i)))
+            {
+                efetivados.add(produtos.get(i));
+                int codigoDoProduto=produtos.get(i).getCodigo();
+                int quantidadeDoProduto=produtos.get(i).getQuantidade();
+                for(int j=0;j<estoque.getPromocoes().size();j++)
+                {
+                    if(estoque.getPromocoes().get(j).getCodigoProduto()==produtos.get(i).getCodigo())
+                    {
+                        Produto paux=produtos.get(indexOfProduto(codigoDoProduto));
+                        auxTotal+=estoque.getPromocoes().get(j).getValor()*paux.getQuantidade();
+                        for(int k=0;k<paux.getNLotes();k++)
+                        {
+                            estoque.removeQuantidadeDeLote(paux.getLotePorIndice(k).getQuantidade(),codigoDoProduto,paux.getLotePorIndice(k).getCodigoLote());
+                        }
+                    }
+                }
+                
+            }
+        }
+        for(int i=0;i<produtos.size();i++)//baixa normal
+        {
+            if(!efetivados.contains(produtos.get(i)))
+            {
+                efetivados.add(produtos.get(i));
+                int codigoDoProduto=produtos.get(i).getCodigo();
+                int quantidadeDoProduto=produtos.get(i).getQuantidade();
+                auxTotal+=produtos.get(i).getPreco();
+                for(int j=0;j<produtos.get(i).getNLotes();j++)
+                {
+                    Lote lAux=produtos.get(i).getLotePorIndice(j);
+                    estoque.removeQuantidadeDeLote(lAux.getQuantidade(),codigoDoProduto,lAux.getCodigoLote());
+                }
+            }
+        }
+        return auxTotal;
     }
 }
