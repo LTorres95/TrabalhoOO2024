@@ -56,35 +56,7 @@ public class Estoque {
    public List<Produto>getProdutos(){return produtos;}
    public List<Cupom>getCupons(){return cupons;}
    public List<Promocao>getPromocoes(){return promocoes;}
-   public int getQuantidadeIndex(int i)
-   {
-
-    Estoque() {
-        produtos = new ArrayList<>();
-        cupons = new ArrayList<>();
-        promocoes = new ArrayList<>();
-    }
-
-    private int codigoProdToIndex(int codigo) throws ProdutoException {
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getCodigo() == codigo) {
-                return i;
-            }
-        }
-        throw new ProdutoException("Produto com codigo " + codigo + " nao encontrado");
-    }
-
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public List<Cupom> getCupons() {
-        return cupons;
-    }
-
-    public List<Promocao> getPromocoes() {
-        return promocoes;
-    }
+  
 
     public int getQuantidadeIndex(int i) throws ProdutoException {
         if (i < 0 || i >= produtos.size()) {
