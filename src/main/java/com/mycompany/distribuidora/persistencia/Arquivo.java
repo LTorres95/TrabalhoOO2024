@@ -20,7 +20,7 @@ public class Arquivo {
             }
             
         } catch (IOException e) {
-            //e.printStackTrace();
+            System.out.println("Arquivo será carregado após fechar");
         }
 
         return conteudo.toString();
@@ -30,7 +30,7 @@ public class Arquivo {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo, false))) {
             escritor.write(conteudo);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao salvar");
         }
     }
 }
