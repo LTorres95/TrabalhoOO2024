@@ -198,5 +198,15 @@ public class Estoque {
         produtos.remove(index);
         aux.cadastrarLote(aSerAdicionado);
         produtos.add(aux);
-    }
+   }
+    public boolean produtoEstaNoEstoque(int codProduto)
+   {
+        
+        for(int i=0;i<produtos.size();i++)
+        {
+            if(produtos.get(i).getCodigo()==codProduto)
+                return true;
+        }
+        return false;
+   }
 }
