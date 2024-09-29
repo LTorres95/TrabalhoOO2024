@@ -60,9 +60,5 @@ public class Lote {
     {
         quantidadeDeItens+=q;
     }   
-    public void adicionaQuantidadeLote(int q)
-    {
-        quantidadeDeItens+=q;
-    }
-
+   
 }
