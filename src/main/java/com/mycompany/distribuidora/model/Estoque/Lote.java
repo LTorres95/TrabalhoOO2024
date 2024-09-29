@@ -56,5 +56,9 @@ public class Lote {
         quantidadeDeItens = quantidadeDeItens - quantidade;
         return true;
     }
+    public void adicionaQuantidadeLote(int q)
+    {
+        quantidadeDeItens+=q;
+    }
 
 }
