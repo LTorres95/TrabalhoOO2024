@@ -1,22 +1,22 @@
-package com.mycompany.distribuidora.controller;
+package com.mycompany.distribuidora.model.Usuarios;
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.CPF;
-import com.mycompany.distribuidora.model.Telefone;
-import com.mycompany.distribuidora.model.Email;
 
 
 public class Cliente extends Pessoa{
-    private static int idCliente;
-    private String senha;
-    CPF cpf;
+    protected static int idCliente=0;
+    protected String senha;
+    protected CPF cpf;
     
 
-    public Cliente(String nome, Telefone telefone, String login, 
-            String endereco, Email email) 
+    public Cliente(String nome, String telefoneInput, String login, 
+            String endereco, String emailInput) 
             throws EmailException, TelefoneException{
-        super(nome, telefone, email.getLogin(), endereco, email);
+        super(nome, telefoneInput,
+                emailInput.substring(0, emailInput.indexOf("@")),
+                endereco, emailInput);
         idCliente = Cliente.idCliente++;
         
     }
@@ -30,9 +30,9 @@ public class Cliente extends Pessoa{
     //implementar
     public void finalizarPedido(){    }
     //implementar
-    public void pagamento(){ }
+    public void pagamento(){  }
 
-    private String getSenha() {
+    protected String getSenha() {
         return senha;
     }
     
@@ -40,7 +40,7 @@ public class Cliente extends Pessoa{
         return cpf.formataCPF(login);
     }
     
-    private void setSenha(String senha) {
+    protected void setSenha(String senha) {
         this.senha = senha;
     }
 

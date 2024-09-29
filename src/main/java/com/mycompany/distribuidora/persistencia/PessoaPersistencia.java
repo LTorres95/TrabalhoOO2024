@@ -4,7 +4,7 @@
  */
 package com.mycompany.distribuidora.persistencia;
 
-import com.mycompany.distribuidora.controller.Usuario;
+import com.mycompany.distribuidora.model.Usuarios.Pessoa;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -24,17 +24,17 @@ import java.io.Writer;
  *
  * @author joao
  */
-public class UsuarioPersistencia implements Persistencia<Usuario>  {
+public class PessoaPersistencia implements Persistencia<Pessoa>  {
 
-    private static final String FILE_NAME = "usuarios.json";
+    private static final String FILE_NAME = "pessoas.json";
     private Gson gson;
 
-    public UsuarioPersistencia() {
+    public PessoaPersistencia() {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    public void salvarUsuario(Usuario usuario) {
-        List<Usuario> usuarios = carregarUsuarios();
+    public void salvarPessoa(Pessoa usuario) {
+        List<Pessoa> usuarios = carregarPessoas();
         usuarios.add(usuario);
         try (Writer writer = new FileWriter(FILE_NAME)) {
             gson.toJson(usuarios, writer);
@@ -43,9 +43,9 @@ public class UsuarioPersistencia implements Persistencia<Usuario>  {
         }
     }
 
-    public List<Usuario> carregarUsuarios() {
+    public List<Pessoa> carregarPessoas() {
         try (Reader reader = new FileReader(FILE_NAME)) {
-            Usuario[] usuariosArray = gson.fromJson(reader, Usuario[].class);
+            Pessoa[] usuariosArray = gson.fromJson(reader, Pessoa[].class);
             return new ArrayList<>(List.of(usuariosArray));
         } catch (FileNotFoundException e) {
             // Arquivo não encontrado; retorna lista vazia
@@ -56,12 +56,12 @@ public class UsuarioPersistencia implements Persistencia<Usuario>  {
     }
 
     @Override
-    public void save(List<Usuario> itens) {
+    public void save(List<Pessoa> itens) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<Pessoa> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
