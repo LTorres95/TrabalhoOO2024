@@ -1,8 +1,8 @@
 package com.mycompany.distribuidora.model.Estoque.exceptions;
 
-public class CupomException extends Exception {
+public class ProdutoException extends Exception {
 
-    public CupomException(String message) {
+    public ProdutoException(String message) {
         super(message);
     }
 }

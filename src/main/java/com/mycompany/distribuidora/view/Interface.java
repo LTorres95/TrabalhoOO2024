@@ -5,17 +5,16 @@
 package com.mycompany.distribuidora.view;
 
 
+import com.mycompany.distribuidora.exception.EmailException;
+import com.mycompany.distribuidora.exception.TelefoneException;
+import com.mycompany.distribuidora.model.Usuarios.Pessoa;
 import com.mycompany.distribuidora.model.Usuarios.Usuario;
-import com.mycompany.distribuidora.persistencia.UsuarioPersistencia;
+import com.mycompany.distribuidora.persistencia.PessoaPersistencia;
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author si
@@ -38,10 +37,10 @@ public class Interface {
     private JTextField tfTelefone;
     private JTextField tfSenha;
 
-    private UsuarioPersistencia usuarioPersistencia;
+    private PessoaPersistencia pessoaPersistencia;
 
     public Interface() {
-        usuarioPersistencia = new UsuarioPersistencia();
+        pessoaPersistencia = new PessoaPersistencia();
     }
 
     public void desenha() {
@@ -51,7 +50,6 @@ public class Interface {
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLocationRelativeTo(null);
         tela.setLayout(new BorderLayout());
-//        tela.setResizable(false);
 
         desenhaTelaInicial();
 
@@ -62,7 +60,6 @@ public class Interface {
     private void desenhaTelaInicial(){
         JPanel painel = new JPanel();
         painel.setBorder(BorderFactory.createTitledBorder("Tela inicial"));
-//        painel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         painel.setLayout(new BorderLayout());
 
 
@@ -116,9 +113,7 @@ public class Interface {
 
     private void desenhaCadastro(){
         JDialog painel = new JDialog(tela, "Cadastro", true);
-//        painel.setBorder(BorderFactory.createTitledBorder("Cadastro"));
         painel.setSize(WIDTH, HEIGHT);
-//        painel.setPreferredSize(new Dimension(500, 500));
         painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel cadastro = new JPanel();
@@ -128,9 +123,6 @@ public class Interface {
         tfNome = new JTextField(20);
         cadastro.add(tfNome);
 
-        //FAZER CASO PARA EMPRESA E PESSOA FISICA:
-        //SE PESSOA FISICA ----> painelLabel.add(new JLabel("CPF"));
-        //SE PESSOA JURIDICA ---> painelLabel.add(new JLabel("CNPJ"));
         cadastro.add(new JLabel("Telefone:"));
         tfTelefone = new JTextField(20);
         cadastro.add(tfTelefone);
@@ -150,15 +142,22 @@ public class Interface {
         painel.add(cadastro, BorderLayout.CENTER);
 
         JButton btnFimCadastro = new JButton("Finazizar Cadastro");
-        btnFimCadastro.addActionListener(e -> finalizarCadastro());
+        btnFimCadastro.addActionListener(e -> {
+            try {
+                finalizarCadastro();
+            } catch (EmailException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (TelefoneException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
         JButton btnVoltaTela = new JButton("Voltar para tela inicial");
         btnVoltaTela.addActionListener(e -> {
             painel.dispose();
             desenhaTelaInicial();
         });
-//        CRIAR PERSISTENCIA PARA NOVO CADASTRO
-//        btnFimCadastro.addActionListener(new AdicionarCadastro(this));
+
         JPanel botoes = new JPanel();
         botoes.add(btnFimCadastro);
         botoes.add(btnVoltaTela);
@@ -166,15 +165,15 @@ public class Interface {
         painel.getContentPane().add(botoes, BorderLayout.SOUTH);
         painel.setVisible(true);
     }
-    private void finalizarCadastro() {
+    private void finalizarCadastro() throws EmailException, TelefoneException {
         String nome = tfNome.getText();
         String telefone = tfTelefone.getText();
         String email = tfEmail.getText();
         String senha = tfSenha.getText();
 
-        Usuario usuario = new Usuario(nome, telefone, email, senha);
+        Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email);
 
-        usuarioPersistencia.salvarUsuario(usuario);
+        pessoaPersistencia.salvarPessoa(usuario);
 
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }
