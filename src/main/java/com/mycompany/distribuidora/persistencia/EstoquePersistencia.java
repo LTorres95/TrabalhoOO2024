@@ -50,7 +50,5 @@ public class EstoquePersistencia implements Persistencia<Produto>{
         }
         return contatos;
     }
-
-
-    
+  
 }
