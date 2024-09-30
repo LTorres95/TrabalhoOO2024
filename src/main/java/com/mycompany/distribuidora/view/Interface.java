@@ -162,7 +162,7 @@ public class Interface {
 
         Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email);
 
-        pessoaPersistencia.salvarPessoa(usuario);
+        pessoaPersistencia.save(usuario);
 
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }

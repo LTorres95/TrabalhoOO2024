@@ -13,10 +13,9 @@ public class PessoaPersistencia implements Persistencia<Pessoa> {
     private static final String PATH
             = DIRECTORY + File.separator + "pessoas.json";
 
-    @Override
-    public void save(List<Pessoa> itens) {
+    public void save(Pessoa pessoa) {
         Gson gson = new Gson();
-        String json = gson.toJson(itens);
+        String json = gson.toJson(pessoa);
 
         File diretorio = new File(DIRECTORY);
         if (!diretorio.exists()) {
@@ -43,6 +42,11 @@ public class PessoaPersistencia implements Persistencia<Pessoa> {
             }
         }
         return contatos;
+    }
+
+    @Override
+    public void save(List<Pessoa> itens) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -153,7 +153,7 @@ public class Produto {
         }
     }
 
-    public list<Lote> getLotes() {
+    public List<Lote> getLotes() {
         return lotes;
     }
 }
