@@ -44,4 +44,9 @@ public abstract class PessoaPersistencia implements Persistencia<Pessoa> {
         return contatos;
     }
 
+    @Override
+    public void save(List<Pessoa> itens) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
