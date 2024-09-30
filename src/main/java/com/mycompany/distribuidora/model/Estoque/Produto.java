@@ -136,4 +136,24 @@ public class Produto {
 
     }
 
+    public boolean loteExiste(int codLote) {
+        for (int i = 0; i < lotes.size(); i++) {
+            if (lotes.get(i).getCodigoLote() == codLote) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeLote(int codLote) {
+        for (int i = 0; i < lotes.size(); i++) {
+            if (lotes.get(i).getCodigoLote() == codLote) {
+                lotes.remove(i);
+            }
+        }
+    }
+
+    public list<Lote> getLotes() {
+        return lotes;
+    }
 }

@@ -19,7 +19,7 @@
                     <archive>
                         <manifest>
 
-                            <mainClass>fully.qualified.MainClass</mainClass>
+                            <mainClass>com.mycompany.distribuidora.Distribuidora</mainClass>
 
                         </manifest>
                     </archive>
@@ -54,6 +54,6 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
-            </dependency>
+        </dependency>
     </dependencies>
 </project>

@@ -80,7 +80,7 @@ public class InterfaceEstoque {
         loteListModel.clear();
         Produto produtoSelecionado = produtoList.getSelectedValue();
         if (produtoSelecionado != null) {
-            List<Lote> lotes = produtoSelecionado.getLotes();
+            List<Lote> lotes = (List<Lote>) produtoSelecionado.getLotes();
             for (Lote lote : lotes) {
                 loteListModel.addElement(lote);
             }

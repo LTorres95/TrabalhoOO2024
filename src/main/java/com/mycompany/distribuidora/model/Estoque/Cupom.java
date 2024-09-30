@@ -19,7 +19,7 @@ public class Cupom extends Promocao {
         this.codigoCupom = codigoCupom;
     }
 
-    int getCodigoCupom() {
+    public int getCodigoCupom() {
         return codigoCupom;
     }
 
