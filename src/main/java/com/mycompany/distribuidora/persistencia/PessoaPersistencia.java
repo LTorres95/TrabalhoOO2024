@@ -4,6 +4,13 @@
  */
 package com.mycompany.distribuidora.persistencia;
 
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
+
 import com.mycompany.distribuidora.model.Usuarios.Pessoa;
 
 import com.google.gson.reflect.TypeToken;
@@ -57,12 +64,15 @@ public class PessoaPersistencia implements Persistencia<Pessoa>  {
 
     @Override
     public void save(List<Pessoa> itens) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        try (Writer writer = new FileWriter(FILE_NAME)) {
+            gson.toJson(itens, writer); // Converte a lista de pessoas para JSON e escreve no arquivo
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao salvar a lista de pessoas: " + e.getMessage());
+        }    }
 
     @Override
     public List<Pessoa> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return carregarPessoas();
     }
 
 }

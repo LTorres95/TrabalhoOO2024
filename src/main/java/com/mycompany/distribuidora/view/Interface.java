@@ -3,12 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.distribuidora.view;
-
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.Usuarios.Pessoa;
-import com.mycompany.distribuidora.model.Usuarios.Usuario;
 import com.mycompany.distribuidora.persistencia.PessoaPersistencia;
 import javax.swing.*;
 import java.awt.*;

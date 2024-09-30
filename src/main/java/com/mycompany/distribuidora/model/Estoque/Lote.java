@@ -1,5 +1,10 @@
 package com.mycompany.distribuidora.model.Estoque;
-
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 import com.mycompany.distribuidora.model.Estoque.exceptions.LoteException;
 
 public class Lote {
@@ -9,7 +14,7 @@ public class Lote {
     private int quantidadeDeItens;
     private int codigoLote;
 
-    Lote(Data dataAquisicao, int validade, int quantidadeDeItens, int codigoLote) throws LoteException {
+    public Lote(Data dataAquisicao, int validade, int quantidadeDeItens, int codigoLote) throws LoteException {
         if (validade <= 0) {
             throw new LoteException("A validade deve ser maior que 0.");
         }

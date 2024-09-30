@@ -5,10 +5,12 @@
 package com.mycompany.distribuidora.persistencia;
 
 import java.io.*;
-/**
- *
- * @author si
- */
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 public class Arquivo {
     public static String le(String caminhoArquivo){
         StringBuilder conteudo = new StringBuilder();

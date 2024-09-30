@@ -6,10 +6,12 @@ package com.mycompany.distribuidora.model;
 
 import com.mycompany.distribuidora.exception.TelefoneException;
 
-/**
- *
- * @author ltmar
- */
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 public class Telefone {
     private String telefone;
     private int ddd;

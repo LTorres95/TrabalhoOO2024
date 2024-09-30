@@ -7,10 +7,12 @@ import com.mycompany.distribuidora.exception.EmailException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author ltmar
- */
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 public class Email {
     private String email;
     private String login;

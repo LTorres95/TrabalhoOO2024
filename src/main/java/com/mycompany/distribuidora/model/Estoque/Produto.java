@@ -1,5 +1,10 @@
 package com.mycompany.distribuidora.model.Estoque;
-
+/*
+ João Nilson Quintão Barros - 202276007
+ Pedro Souza Pinheiro da Silva Araujo - 202165560C
+ Lucas Torres Martins - 202135023
+ Gustavo do Bem Ferreira - 202065036AC
+*/
 import com.mycompany.distribuidora.model.Estoque.exceptions.LoteException;
 import com.mycompany.distribuidora.model.Estoque.exceptions.ProdutoException;
 import java.util.*;
@@ -29,6 +34,12 @@ public class Produto {
         return aux;
     }
 
+    public List<Lote> getLotes() {
+        return lotes;
+    }
+    
+    
+    
     public int getCodigo() {
         return codigo;
     }

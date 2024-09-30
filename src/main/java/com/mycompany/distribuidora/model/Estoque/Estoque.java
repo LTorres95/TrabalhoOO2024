@@ -9,7 +9,7 @@ public class Estoque {
     private List<Cupom> cupons;
     private List<Promocao> promocoes;
 
-    Estoque() {
+    public Estoque() {
         produtos = new ArrayList<>();
         cupons = new ArrayList<>();
         promocoes = new ArrayList<>();
