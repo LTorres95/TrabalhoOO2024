@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaPersistencia implements Persistencia<Pessoa> {
+public abstract class PessoaPersistencia implements Persistencia<Pessoa> {
 
     private static final String PATH
             = DIRECTORY + File.separator + "pessoas.json";
