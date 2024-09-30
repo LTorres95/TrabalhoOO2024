@@ -31,7 +31,12 @@ public class Interface {
     private PessoaPersistencia pessoaPersistencia;
 
     public Interface() {
-        pessoaPersistencia = new PessoaPersistencia();
+        pessoaPersistencia = new PessoaPersistencia() {
+            @Override
+            public void save(java.util.List<Pessoa> itens) {
+                throw new UnsupportedOperationException("Nao suportado");
+            }
+        };
     }
 
     public void desenha() {
