@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.distribuidora.persistencia;
 
 import com.google.gson.Gson;
@@ -12,10 +8,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ltmar
- */
 public class PessoaPersistencia implements Persistencia<Pessoa> {
 
     private static final String PATH

@@ -1,9 +1,4 @@
-                        /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.distribuidora.view;
-
 
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
@@ -15,12 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**
- *
- * @author si
- */
-public class Interface {
 
+public class Interface {
 
     private JFrame tela;
     private final int WIDTH = 500;
@@ -57,11 +48,10 @@ public class Interface {
         tela.setVisible(true);
     }
 
-    private void desenhaTelaInicial(){
+    private void desenhaTelaInicial() {
         JPanel painel = new JPanel();
         painel.setBorder(BorderFactory.createTitledBorder("Tela inicial"));
         painel.setLayout(new BorderLayout());
-
 
         String[] tipos = {"CPF", "CNPJ"};
         JComboBox tipoLogin = new JComboBox(tipos);
@@ -70,15 +60,15 @@ public class Interface {
         JPanel login = new JPanel();
         JPanel painelLabel = new JPanel();
 
-        painelLabel.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
         painelLabel.add(new JLabel("Login"));
 
         JPanel painelField = new JPanel();
-        painelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        painelField.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
         tfUsuario = new JTextField(20);
 
         JPanel secondPainelField = new JPanel();
-        secondPainelField.setLayout(new GridLayout(0,1, H_GAP,V_GAP));
+        secondPainelField.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
         tfSenha = new JTextField(20);
 
         painelField.add(tfUsuario);
@@ -90,7 +80,6 @@ public class Interface {
         componentes.add(secondPainelField);
 
         painel.add(componentes, BorderLayout.CENTER);
-
 
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
@@ -111,13 +100,13 @@ public class Interface {
         tela.getContentPane().add(painel, BorderLayout.CENTER);
     }
 
-    private void desenhaCadastro(){
+    private void desenhaCadastro() {
         JDialog painel = new JDialog(tela, "Cadastro", true);
         painel.setSize(WIDTH, HEIGHT);
         painel.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel cadastro = new JPanel();
-        cadastro.setLayout(new GridLayout(0, 1, H_GAP,V_GAP));
+        cadastro.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
 
         cadastro.add(new JLabel("Nome:"));
         tfNome = new JTextField(20);
@@ -136,7 +125,6 @@ public class Interface {
         cadastro.add(tfSenha);
 
         painel.getContentPane().add(cadastro, BorderLayout.CENTER);
-
 
         painel.setLayout(new BorderLayout());
         painel.add(cadastro, BorderLayout.CENTER);
@@ -165,6 +153,7 @@ public class Interface {
         painel.getContentPane().add(botoes, BorderLayout.SOUTH);
         painel.setVisible(true);
     }
+
     private void finalizarCadastro() throws EmailException, TelefoneException {
         String nome = tfNome.getText();
         String telefone = tfTelefone.getText();
@@ -177,7 +166,5 @@ public class Interface {
 
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }
-    
-    
-    
+
 }
