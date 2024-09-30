@@ -28,6 +28,7 @@ public class Gerente extends Pessoa {
         this.senha = senha;
     }
 
+    @Override
     public String getTelefone() {
         return telefone.getTelefone();
     }

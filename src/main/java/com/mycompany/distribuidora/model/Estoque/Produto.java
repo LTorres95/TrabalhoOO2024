@@ -13,10 +13,7 @@ public class Produto {
     private double imposto;
 
     private boolean valid(int number, int lowestLimit, int greatest) {
-        if (number > lowestLimit & number <= greatest) {
-            return true;
-        }
-        return false;
+        return number > lowestLimit & number <= greatest;
     }
 
     private int getIndexLoteCodigo(int cod) {

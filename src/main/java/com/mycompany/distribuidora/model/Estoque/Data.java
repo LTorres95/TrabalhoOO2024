@@ -9,10 +9,7 @@ public class Data {
     private int ano;
 
     private boolean valid(int number, int lowestLimit, int greatest) {
-        if (number > lowestLimit & number <= greatest) {
-            return true;
-        }
-        return false;
+        return number > lowestLimit & number <= greatest;
     }
 
     Data(int d, int m, int a) throws DataException {
