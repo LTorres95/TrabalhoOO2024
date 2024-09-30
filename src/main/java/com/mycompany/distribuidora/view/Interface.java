@@ -31,7 +31,12 @@ public class Interface {
     private PessoaPersistencia pessoaPersistencia;
 
     public Interface() {
-        pessoaPersistencia = new PessoaPersistencia();
+        pessoaPersistencia = new PessoaPersistencia() {
+            @Override
+            public void save(java.util.List<Pessoa> itens) {
+                throw new UnsupportedOperationException("Nao suportado");
+            }
+        };
     }
 
     public void desenha() {
@@ -162,7 +167,7 @@ public class Interface {
 
         Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email);
 
-        pessoaPersistencia.salvarPessoa(usuario);
+        pessoaPersistencia.save(usuario);
 
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }
