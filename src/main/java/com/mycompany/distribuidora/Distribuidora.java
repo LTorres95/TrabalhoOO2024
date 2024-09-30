@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.distribuidora;
+
 import com.mycompany.distribuidora.view.Interface;
 import com.mycompany.distribuidora.model.Usuarios.Pessoa;
 
-
-/**
- *
- * @author ltmar
- */
 public class Distribuidora {
 
     public static void main(String[] args) {
