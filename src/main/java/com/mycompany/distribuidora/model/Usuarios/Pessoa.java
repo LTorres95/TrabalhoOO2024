@@ -6,6 +6,7 @@ import com.mycompany.distribuidora.model.Email;
 import com.mycompany.distribuidora.model.Telefone;
 
 public class Pessoa {
+
     protected String nome;
     protected Telefone telefone;
     protected Email email;
@@ -16,26 +17,22 @@ public class Pessoa {
     }
 
     public Pessoa(String nome, String telefoneInput, String login, String endereco,
-            String emailInput) throws EmailException, TelefoneException
-    {
+            String emailInput) throws EmailException, TelefoneException {
         this.nome = nome;
-        try{
+        try {
             this.telefone = new Telefone(telefoneInput);
-        }
-        catch(TelefoneException e) {
+        } catch (TelefoneException e) {
             throw new TelefoneException();
         }
         this.login = this.email.getLogin();
         this.endereco = endereco;
         try {
             this.email = new Email(emailInput);
-        }   
-        catch (EmailException e){
+        } catch (EmailException e) {
             throw new EmailException();
         }
-        
+
     }
-    
 
     public String getEndereco() {
         return endereco;
@@ -56,6 +53,5 @@ public class Pessoa {
     public String getTelefone() {
         return telefone.toString();
     }
-
 
 }
