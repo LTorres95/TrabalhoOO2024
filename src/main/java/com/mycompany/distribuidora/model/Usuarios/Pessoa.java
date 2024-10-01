@@ -73,9 +73,9 @@ public abstract class Pessoa {
     public Email getEmail(){return email;}
 
     public abstract  Produto getProduto(int codProduto) throws EstoqueException,PedidoException;
-    //public abstract  void removeQuantidadeDeLote(int quantidade, int codProduto, int codLote) throws ProdutoException,EstoqueException;
-    //public abstract  Lote getLote(int codProduto, int codLote) throws ProdutoException,EstoqueException;
-    //public abstract  List<Produto> getProdutos() throws PedidoException;
+    public abstract  void removeQuantidadeDeLote(int quantidade, int codProduto, int codLote) throws ProdutoException,EstoqueException;
+    public abstract  Lote getLote(int codProduto, int codLote) throws ProdutoException,EstoqueException;
+    public abstract  List<Produto> getProdutos() throws PedidoException;
     public  List<Cupom> getCupons()throws EstoqueException
     {
         if(privilegio.canGetCupons())
@@ -94,19 +94,19 @@ public abstract class Pessoa {
     {
         return estoque.getQuantidadeLote(codProduto, codLote);
     }
-    //public abstract  List<Produto> getNDiasProximoValidade(int nDias, Data data) throws DataException, LoteException, ProdutoException;
-    //public abstract  void criarCupom(int codProduto, double novoValor, int codigoCupom) throws PromocaoException, CupomException;
-    //public abstract  void criarPromocao(int codProduto, double novoValor) throws PromocaoException ;
+    public abstract  List<Produto> getNDiasProximoValidade(int nDias, Data data) throws DataException, LoteException, ProdutoException;
+    public abstract  void criarCupom(int codProduto, double novoValor, int codigoCupom) throws PromocaoException, CupomException;
+    public abstract  void criarPromocao(int codProduto, double novoValor) throws PromocaoException ;
     
-    //public abstract  void adicionarEstoque(Lote aSerAdicionado, int codproduto) throws ProdutoException,EstoqueException;
-    //public abstract  double getVendas() throws EstoqueException;
+    public abstract  void adicionarEstoque(Lote aSerAdicionado, int codproduto) throws ProdutoException,EstoqueException;
+    public abstract  double getVendas() throws EstoqueException;
 
-    //public abstract  boolean estaNaLista(int codProduto) throws PedidoException;
-    //public abstract  void adicionaProduto(int codigoProduto, int codLote, int quantidade) throws PedidoException, ProdutoException;
-    //public abstract  void removeProduto(int codProduto, int quantidade, int codLote) throws PedidoException, ProdutoException;
-    //public abstract  void aplicaCupom(int codCupom) throws PedidoException;
-    //public abstract  void efetivaCompra(Estoque estoque) throws Exception;
-    //public abstract  int getCodigoPedido();
+    public abstract  boolean estaNaLista(int codProduto) throws PedidoException;
+    public abstract  void adicionaProduto(int codigoProduto, int codLote, int quantidade) throws PedidoException, ProdutoException;
+    public abstract  void removeProduto(int codProduto, int quantidade, int codLote) throws PedidoException, ProdutoException;
+    public abstract  void aplicaCupom(int codCupom) throws PedidoException;
+    public abstract  void efetivaCompra(Estoque estoque) throws Exception;
+    public abstract  int getCodigoPedido();
     
 }
 
