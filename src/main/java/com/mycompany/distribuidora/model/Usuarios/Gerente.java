@@ -16,7 +16,7 @@ public class Gerente extends Pessoa {
             TelefoneException {
         super(nome, telefoneInput,
                 emailInput.substring(0, emailInput.indexOf("@")),
-                endereco, emailInput);
+                endereco, emailInput,'g');
         idGerente++;
     }
 

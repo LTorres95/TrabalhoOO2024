@@ -13,7 +13,7 @@ public class Pedido {
     private Estoque estoque;
     private List<Integer> cupons;
 
-    Pedido(int codigo, Estoque estoque) {
+    public Pedido(int codigo, Estoque estoque) {
         produtos = new ArrayList<>();
         codigoPedido = codigo;
         total = 0;
@@ -30,7 +30,7 @@ public class Pedido {
         return false;
     }
 
-    private int indexOfProduto(int codProduto) {
+    public int indexOfProduto(int codProduto) {
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getCodigo() == codProduto) {
                 return i;
@@ -72,6 +72,10 @@ public class Pedido {
             prodAux.cadastrarLote(aux);
         }
 
+    }
+    public List<Produto> getProdutos()
+    {
+        return produtos;
     }
 
     public void removeProduto(int codProduto, int quantidade, int codLote) throws PedidoException, ProdutoException {
@@ -157,4 +161,5 @@ public class Pedido {
         }
         return auxTotal;
     }
+    public int getCodigoPedido(){return codigoPedido;}
 }
