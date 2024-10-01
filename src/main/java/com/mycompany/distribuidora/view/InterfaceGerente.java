@@ -83,7 +83,7 @@ public class InterfaceGerente {
         btnCadastrarVendedor.addActionListener((ActionEvent e) -> {
             String nomeVendedor = JOptionPane.showInputDialog(frame, "Nome do Vendedor:");
             if (nomeVendedor != null && !nomeVendedor.isEmpty()) {
-                Vendedor novoVendedor = new Vendedor(nomeVendedor);
+                Vendedor novoVendedor = new Vendedor(nomeVendedor) {};
                 vendedores.add(novoVendedor);
                 vendedorListModel.addElement(novoVendedor);
             } else {
