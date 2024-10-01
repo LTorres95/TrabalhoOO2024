@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterfaceGerente {
-    
+
     private JFrame frame;
     private DefaultListModel<Produto> produtoListModel;
     private DefaultListModel<Vendedor> vendedorListModel;
@@ -40,7 +40,7 @@ public class InterfaceGerente {
 
         carregarProdutos();
         carregarVendedores();
-        
+
         // Painéis de rolagem para as listas
         JScrollPane produtoScrollPane = new JScrollPane(produtoList);
         JScrollPane vendedorScrollPane = new JScrollPane(vendedorList);
@@ -49,10 +49,12 @@ public class InterfaceGerente {
         painelCentral.add(produtoScrollPane);
         painelCentral.add(vendedorScrollPane);
 
-        // Botões para gerenciamento de produtos
-        
+        // Botões para gerenciamento de produtos e vendedores
+        JPanel painelBotoes = new JPanel();
         JButton btnAddProduto = new JButton("Adicionar Produto");
         JButton btnRemoverProduto = new JButton("Remover Produto");
+        JButton btnCadastrarVendedor = new JButton("Cadastrar Vendedor");
+        JButton btnRemoverVendedor = new JButton("Remover Vendedor");
 
         // Ação para adicionar produto ao estoque
         btnAddProduto.addActionListener((ActionEvent e) -> {
@@ -77,8 +79,42 @@ public class InterfaceGerente {
             }
         });
 
+        // Ação para cadastrar novo vendedor
+        btnCadastrarVendedor.addActionListener((ActionEvent e) -> {
+            String nomeVendedor = JOptionPane.showInputDialog(frame, "Nome do Vendedor:");
+            if (nomeVendedor != null && !nomeVendedor.isEmpty()) {
+                Vendedor novoVendedor = new Vendedor(nomeVendedor);
+                vendedores.add(novoVendedor);
+                vendedorListModel.addElement(novoVendedor);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Nome do vendedor inválido.");
+            }
+        });
+
+        // Ação para remover vendedor
+        btnRemoverVendedor.addActionListener((ActionEvent e) -> {
+            Vendedor vendedorSelecionado = vendedorList.getSelectedValue();
+            if (vendedorSelecionado != null) {
+                vendedores.remove(vendedorSelecionado);
+                vendedorListModel.removeElement(vendedorSelecionado);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Selecione um vendedor para remover.");
+            }
+        });
+
+        // Adicionar botões ao painel
+        painelBotoes.add(btnAddProduto);
+        painelBotoes.add(btnRemoverProduto);
+        painelBotoes.add(btnCadastrarVendedor);
+        painelBotoes.add(btnRemoverVendedor);
+
+        // Adiciona painéis ao frame
+        frame.add(painelCentral, BorderLayout.CENTER);
+        frame.add(painelBotoes, BorderLayout.SOUTH);
+
+        frame.setVisible(true);
     }
-    
+
     private void carregarProdutos() {
         for (Produto produto : estoque) {
             produtoListModel.addElement(produto);
