@@ -49,10 +49,12 @@ public class InterfaceCliente {
         controlPanel.add(produtoScrollPane);
         controlPanel.add(carrinhoScrollPane);
 
-        // Botões para adicionar e remover
+        // Botões para adicionar, remover e finalizar o pedido
         JPanel botoesPainel = new JPanel();
         JButton btnAdicionar = new JButton("Adicionar ao Carrinho");
         JButton btnRemover = new JButton("Remover do Carrinho");
+        JButton btnFinalizar = new JButton("Finalizar Pedido");
+        JButton btnEncerrar = new JButton("Encerrar Compra");
 
         // Ação para adicionar produto ao carrinho
         btnAdicionar.addActionListener((ActionEvent e) -> {
@@ -76,8 +78,29 @@ public class InterfaceCliente {
             }
         });
 
+        // Ação para finalizar o pedido
+        btnFinalizar.addActionListener((ActionEvent e) -> {
+            if (!carrinho.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Pedido finalizado com sucesso! Quantidade de itens: " + carrinho.size());
+                carrinho.clear();
+                carrinhoListModel.clear(); // Limpa o carrinho após finalização
+            } else {
+                JOptionPane.showMessageDialog(frame, "Seu carrinho está vazio.");
+            }
+        });
+
+        // Ação para encerrar a compra sem finalizar
+        btnEncerrar.addActionListener((ActionEvent e) -> {
+            int resposta = JOptionPane.showConfirmDialog(frame, "Tem certeza que deseja encerrar a compra?", "Encerrar Compra", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                frame.dispose(); // Fecha a janela
+            }
+        });
+
         botoesPainel.add(btnAdicionar);
         botoesPainel.add(btnRemover);
+        botoesPainel.add(btnFinalizar);
+        botoesPainel.add(btnEncerrar);
 
         // Adiciona os painéis à janela principal
         frame.add(controlPanel, BorderLayout.CENTER);
