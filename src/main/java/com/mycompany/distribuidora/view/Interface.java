@@ -165,7 +165,7 @@ public class Interface {
         String email = tfEmail.getText();
         String senha = tfSenha.getText();
 
-        Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email);
+        Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email,'c');
 
         pessoaPersistencia.save(usuario);
 

@@ -16,10 +16,11 @@ public class Vendedor extends Pessoa {
 
         super(nome, telefoneInput,
                 emailInput.substring(0, emailInput.indexOf("@")),
-                endereco, emailInput);
+                endereco, emailInput,'v');
         idVendedor = Vendedor.idVendedor++;
 
     }
+    
 
     //public void Venda(){};
 }

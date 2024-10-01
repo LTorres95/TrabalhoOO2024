@@ -8,11 +8,13 @@ public class Estoque {
     private List<Produto> produtos;
     private List<Cupom> cupons;
     private List<Promocao> promocoes;
+    private double vendas;
 
     Estoque() {
         produtos = new ArrayList<>();
         cupons = new ArrayList<>();
         promocoes = new ArrayList<>();
+        vendas=0;
     }
 
     public Produto getProduto(int codProduto) {
@@ -191,4 +193,8 @@ public class Estoque {
         }
         return false;
     }
+
+    public void addValor(double aAdicionar){vendas+=aAdicionar;}
+
+    public double getVendas(){return vendas;}
 }
