@@ -12,6 +12,25 @@ public class Produto {
     private List<Lote> lotes;
     private double imposto;
 
+    public Produto(String nome) {
+        this.nome = nome;
+        this.lotes = new ArrayList<>(); // Inicializa a lista de lotes vazia
+    }
+    
+    public Produto(int codigo, String nome, double preco, double imposto) throws ProdutoException {
+        if (preco < 0) {
+            throw new ProdutoException("O preço do produto não pode ser negativo.");
+        }
+        if (imposto < 0 || imposto > 1) {
+            throw new ProdutoException("O imposto deve estar entre 0 e 1.");
+        }
+        this.nome = nome;
+        this.codigo = codigo;
+        this.preco = preco;
+        this.imposto = imposto;
+        lotes = new ArrayList<>();
+    }
+    
     private boolean valid(int number, int lowestLimit, int greatest) {
         return number > lowestLimit & number <= greatest;
     }
@@ -28,20 +47,6 @@ public class Produto {
 
     public int getCodigo() {
         return codigo;
-    }
-
-    public Produto(int codigo, String nome, double preco, double imposto) throws ProdutoException {
-        if (preco < 0) {
-            throw new ProdutoException("O preço do produto não pode ser negativo.");
-        }
-        if (imposto < 0 || imposto > 1) {
-            throw new ProdutoException("O imposto deve estar entre 0 e 1.");
-        }
-        this.nome = nome;
-        this.codigo = codigo;
-        this.preco = preco;
-        this.imposto = imposto;
-        lotes = new ArrayList<>();
     }
 
     public int getQuantidade() {
@@ -97,7 +102,7 @@ public class Produto {
     public String getNome() {
         return nome;
     }
-
+    
     public Double getImposto() {
         return imposto;
     }
