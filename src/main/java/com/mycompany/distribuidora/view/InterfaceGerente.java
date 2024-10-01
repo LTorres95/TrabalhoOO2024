@@ -40,6 +40,43 @@ public class InterfaceGerente {
 
         carregarProdutos();
         carregarVendedores();
+        
+        // Painéis de rolagem para as listas
+        JScrollPane produtoScrollPane = new JScrollPane(produtoList);
+        JScrollPane vendedorScrollPane = new JScrollPane(vendedorList);
+
+        JPanel painelCentral = new JPanel(new GridLayout(1, 2));
+        painelCentral.add(produtoScrollPane);
+        painelCentral.add(vendedorScrollPane);
+
+        // Botões para gerenciamento de produtos
+        
+        JButton btnAddProduto = new JButton("Adicionar Produto");
+        JButton btnRemoverProduto = new JButton("Remover Produto");
+
+        // Ação para adicionar produto ao estoque
+        btnAddProduto.addActionListener((ActionEvent e) -> {
+            String nomeProduto = JOptionPane.showInputDialog(frame, "Nome do Produto:");
+            if (nomeProduto != null && !nomeProduto.isEmpty()) {
+                Produto novoProduto = new Produto(nomeProduto);
+                estoque.add(novoProduto);
+                produtoListModel.addElement(novoProduto);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Nome do produto inválido.");
+            }
+        });
+
+        // Ação para remover produto do estoque
+        btnRemoverProduto.addActionListener((ActionEvent e) -> {
+            Produto produtoSelecionado = produtoList.getSelectedValue();
+            if (produtoSelecionado != null) {
+                estoque.remove(produtoSelecionado);
+                produtoListModel.removeElement(produtoSelecionado);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Selecione um produto para remover.");
+            }
+        });
+
     }
     
     private void carregarProdutos() {
