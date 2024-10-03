@@ -4,6 +4,18 @@ import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.Telefone;
 import com.mycompany.distribuidora.model.Email;
+import com.mycompany.distribuidora.model.Estoque.Data;
+import com.mycompany.distribuidora.model.Estoque.Estoque;
+import com.mycompany.distribuidora.model.Estoque.Lote;
+import com.mycompany.distribuidora.model.Estoque.Produto;
+import com.mycompany.distribuidora.model.Estoque.exceptions.CupomException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.DataException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.EstoqueException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.LoteException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.PedidoException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.ProdutoException;
+import com.mycompany.distribuidora.model.Estoque.exceptions.PromocaoException;
+import java.util.List;
 
 public class Gerente extends Pessoa {
 
@@ -12,11 +24,11 @@ public class Gerente extends Pessoa {
 
     // Construtor privado para uso apenas dentro da classe
     public Gerente(String nome, String telefoneInput, String login,
-            String endereco, String emailInput) throws EmailException,
+            String endereco, String emailInput, char privilegio, Estoque est) throws EmailException,
             TelefoneException {
         super(nome, telefoneInput,
                 emailInput.substring(0, emailInput.indexOf("@")),
-                endereco, emailInput,'g');
+                endereco, emailInput,'g', est);
         idGerente++;
     }
 
@@ -55,4 +67,79 @@ public class Gerente extends Pessoa {
 
     //public void addEstoque(Produto p){};
     //public void relatorioEstoque(HashMap<Produtos, int> relatorioEstoque){};
+
+    @Override
+    public Produto getProduto(int codProduto) throws EstoqueException, PedidoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void removeQuantidadeDeLote(int quantidade, int codProduto, int codLote) throws ProdutoException, EstoqueException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Lote getLote(int codProduto, int codLote) throws ProdutoException, EstoqueException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Produto> getProdutos() throws PedidoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Produto> getNDiasProximoValidade(int nDias, Data data) throws DataException, LoteException, ProdutoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void criarCupom(int codProduto, double novoValor, int codigoCupom) throws PromocaoException, CupomException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void criarPromocao(int codProduto, double novoValor) throws PromocaoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void adicionarEstoque(Lote aSerAdicionado, int codproduto) throws ProdutoException, EstoqueException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getVendas() throws EstoqueException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean estaNaLista(int codProduto) throws PedidoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void adicionaProduto(int codigoProduto, int codLote, int quantidade) throws PedidoException, ProdutoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void removeProduto(int codProduto, int quantidade, int codLote) throws PedidoException, ProdutoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void aplicaCupom(int codCupom) throws PedidoException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void efetivaCompra(Estoque estoque) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int getCodigoPedido() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

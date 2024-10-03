@@ -18,13 +18,14 @@ public class Telefone {
     //telefone válido formato "(32)99175-2829"
     //tamanho 
     public boolean validaTelefone(String telefoneInput) {
-        if (telefone.charAt(0) != '(' || telefone.charAt(3) != ')'
-                || !telefone.contains("-")) {
+        telefoneInput = telefoneInput.trim();
+        if (telefoneInput.charAt(0) != '(' || telefoneInput.charAt(3) != ')'
+                || !telefoneInput.contains("-")) {
             return false;
-        } else if (!(Character.isDigit(telefone.charAt(1))
-                && Character.isDigit(telefone.charAt(2)))) {
+        } else if (!(Character.isDigit(telefoneInput.charAt(1))
+                && Character.isDigit(telefoneInput.charAt(2)))) {
             return false;
-        } else if (telefone.length() != 14 || telefone.length() != 13) {
+        } else if (telefoneInput.length() != 14 || telefoneInput.length() != 13) {
             return false;
         }
 
