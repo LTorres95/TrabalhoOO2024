@@ -11,9 +11,11 @@ public class Produto {
     private double preco;
     private List<Lote> lotes;
     private double imposto;
+    private int quantidade;
 
     public Produto(String nome) {
         this.nome = nome;
+        this.quantidade = 0;
         this.lotes = new ArrayList<>(); // Inicializa a lista de lotes vazia
     }
     
@@ -160,5 +162,16 @@ public class Produto {
 
     public List<Lote> getLotes() {
         return lotes;
+    }
+    
+    public void adicionarQuantidade(int quantidade) {
+        if (quantidade > 0) {
+            this.quantidade += quantidade;
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return nome + " - Quantidade: " + quantidade;
     }
 }
