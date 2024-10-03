@@ -54,7 +54,7 @@ public class InterfaceGerente {
         JButton btnRemoverProduto = new JButton("Remover Produto");
         JButton btnCadastrarVendedor = new JButton("Cadastrar Vendedor");
         JButton btnRemoverVendedor = new JButton("Remover Vendedor");
-        JButton btnComprarEstoque = new JButton("Comprar Estoque"); // Novo botão
+        JButton btnComprarEstoque = new JButton("Comprar Estoque");
 
         // Ação para adicionar produto ao estoque
         btnAddProduto.addActionListener((ActionEvent e) -> {
@@ -91,18 +91,18 @@ public class InterfaceGerente {
             }
         });
 
-        // Ação para remover vendedor
+        // Ação para retirar vendedor
         btnRemoverVendedor.addActionListener((ActionEvent e) -> {
             Vendedor vendedorSelecionado = vendedorList.getSelectedValue();
             if (vendedorSelecionado != null) {
                 vendedores.remove(vendedorSelecionado);
                 vendedorListModel.removeElement(vendedorSelecionado);
             } else {
-                JOptionPane.showMessageDialog(frame, "Selecione um vendedor para remover.");
+                JOptionPane.showMessageDialog(frame, "Selecione um vendedor para retirar.");
             }
         });
 
-        // Ação para comprar estoque
+        // Ação para comprar e repôr o estoque
         btnComprarEstoque.addActionListener((ActionEvent e) -> {
             Produto produtoSelecionado = produtoList.getSelectedValue();
             if (produtoSelecionado != null) {
@@ -119,7 +119,7 @@ public class InterfaceGerente {
                     JOptionPane.showMessageDialog(frame, "Digite um número válido.");
                 }
             } else {
-                JOptionPane.showMessageDialog(frame, "Selecione um produto para comprar.");
+                JOptionPane.showMessageDialog(frame, "Selecione um produto para comprar e repôr o estoque.");
             }
         });
 
@@ -128,7 +128,7 @@ public class InterfaceGerente {
         painelBotoes.add(btnRemoverProduto);
         painelBotoes.add(btnCadastrarVendedor);
         painelBotoes.add(btnRemoverVendedor);
-        painelBotoes.add(btnComprarEstoque); // Adiciona o botão de compra de estoque
+        painelBotoes.add(btnComprarEstoque); 
 
         // Adiciona painéis ao frame
         frame.add(painelCentral, BorderLayout.CENTER);

@@ -83,7 +83,7 @@ public class Produto {
         return lotes.get(i);
     }
 
-    public Lote getLotePorCodigo(int codigo) throws ProdutoException // usofora da classe : se loteExiste(codigo) -> getLotePorCodigo(codigo)
+    public Lote getLotePorCodigo(int codigo) throws ProdutoException // uso fora da classe : se loteExiste(codigo) -> getLotePorCodigo(codigo)
     {
         for (int i = 0; i < lotes.size(); i++) {
             if (lotes.get(i).getCodigoLote() == codigo) {
