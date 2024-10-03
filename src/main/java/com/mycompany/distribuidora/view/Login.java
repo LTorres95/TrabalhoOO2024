@@ -118,50 +118,36 @@ public class Login {
         telaLogin.getContentPane().add(painel, BorderLayout.WEST);
     }
     
-    private void desenhaLogin() {
+       private void desenhaLogin(){
         JPanel painel = new JPanel();
         painel.setBorder(BorderFactory.createTitledBorder("Formulário"));
 
-        // Usando GridBagLayout para melhor controle da disposição dos componentes
-        painel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        JPanel formulario = new JPanel();
+        JPanel painelLabel = new JPanel();
+        painelLabel.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
+        painelLabel.add(new JLabel("Login (parte antes do @ no email)"));
+        painelLabel.add(new JLabel("Senha"));
+        
+        JPanel painelField = new JPanel();
+        painelField.setLayout(new GridLayout(0, 1, H_GAP, V_GAP));
+        tfLogin = new JTextField(20);
+        tfSenha = new JTextField(20);
+        
+        painelField.add(tfLogin);
+        painelField.add(tfSenha);
 
-        // Definir espaçamento entre componentes
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;  // Esticar as caixas de texto horizontalmente
-        gbc.anchor = GridBagConstraints.NORTH;     // Fixar os componentes ao topo
+        formulario.add(painelLabel);
+        formulario.add(painelField);
 
-        // Rótulo para Login
-        gbc.gridx = 0; // Coluna 0
-        gbc.gridy = 0; // Linha 0
-        gbc.gridwidth = 1; // Usar 1 célula de largura
-        painel.add(new JLabel("Login (parte antes do @ no email)"), gbc);
+        painel.setLayout(new BorderLayout());
+        painel.add(formulario, BorderLayout.CENTER);
 
-        // Caixa de texto para Login
-        gbc.gridy = 1; // Linha 1, abaixo do rótulo
-        tfLogin = new JTextField();
-        tfLogin.setPreferredSize(new java.awt.Dimension(200, 30)); // Definir tamanho preferido (mais largo e altura compacta)
-        painel.add(tfLogin, gbc);
-
-        // Rótulo para Senha
-        gbc.gridy = 2; // Linha 2
-        painel.add(new JLabel("Senha"), gbc);
-
-        // Caixa de texto para Senha
-        gbc.gridy = 3; // Linha 3, abaixo do rótulo de senha
-        tfSenha = new JTextField();
-        tfSenha.setPreferredSize(new java.awt.Dimension(200, 30)); // Largura 200 e altura 30
-        painel.add(tfSenha, gbc);
-
-        // Botão de Adicionar
-        gbc.gridy = 4; // Linha 4, para o botão
-        gbc.gridwidth = 2; // Ocupa 2 colunas (centralizar)
-        gbc.anchor = GridBagConstraints.CENTER; // Centraliza o botão
         JButton btnAdicionar = new JButton("Adicionar");
-        painel.add(btnAdicionar, gbc);
-
-        // Adicionar painel de login à tela principal
-        telaLogin.getContentPane().add(painel, BorderLayout.CENTER);
+        //btnAdicionar.addActionListener(new Login(this));
+        JPanel botoes = new JPanel();
+        botoes.add(btnAdicionar);
+        painel.add(botoes, BorderLayout.SOUTH);
+        telaLogin.getContentPane().add(painel, BorderLayout.EAST);
     }
     
     private void auxLogin(){
