@@ -3,7 +3,12 @@ package com.mycompany.distribuidora.model.Estoque;
 import com.mycompany.distribuidora.model.Estoque.exceptions.LoteException;
 import com.mycompany.distribuidora.model.Estoque.exceptions.ProdutoException;
 import java.util.*;
-
+/*
+Pedro Souza Pinheiro da Silva Araujo - 202165560C
+Lucas Torres Martins - 202135023
+Gustavo do Bem Ferreira - 202065036AC
+João Nilson Quintão Barros - 202276007
+*/
 public class Produto {
 
     private String nome;

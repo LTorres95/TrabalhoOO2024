@@ -8,7 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Pedro Souza Pinheiro da Silva Araujo - 202165560C
+Lucas Torres Martins - 202135023
+Gustavo do Bem Ferreira - 202065036AC
+João Nilson Quintão Barros - 202276007
+*/
 public class InterfaceGerente {
 
     private JFrame frame;
@@ -83,9 +88,9 @@ public class InterfaceGerente {
         btnCadastrarVendedor.addActionListener((ActionEvent e) -> {
             String nomeVendedor = JOptionPane.showInputDialog(frame, "Nome do Vendedor:");
             if (nomeVendedor != null && !nomeVendedor.isEmpty()) {
-                Vendedor novoVendedor = new Vendedor(nomeVendedor) {};
-                vendedores.add(novoVendedor);
-                vendedorListModel.addElement(novoVendedor);
+                //Vendedor novoVendedor = new Vendedor() {};
+                //vendedores.add(novoVendedor);
+                //vendedorListModel.addElement(novoVendedor);
             } else {
                 JOptionPane.showMessageDialog(frame, "Nome do vendedor inválido.");
             }

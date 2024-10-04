@@ -13,7 +13,12 @@ import com.mycompany.distribuidora.model.Estoque.exceptions.ProdutoException;
 import com.mycompany.distribuidora.model.Estoque.exceptions.PromocaoException;
 import com.mycompany.distribuidora.model.Pedido.Pedido;
 import java.util.*;
-
+/*
+Pedro Souza Pinheiro da Silva Araujo - 202165560C
+Lucas Torres Martins - 202135023
+Gustavo do Bem Ferreira - 202065036AC
+João Nilson Quintão Barros - 202276007
+*/
 public class Cliente extends Pessoa {
 
     protected static int idCliente = 0;
