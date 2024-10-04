@@ -3,14 +3,18 @@ package com.mycompany.distribuidora.view;
 import com.mycompany.distribuidora.exception.EmailException;
 import com.mycompany.distribuidora.exception.TelefoneException;
 import com.mycompany.distribuidora.model.Usuarios.Pessoa;
-import com.mycompany.distribuidora.model.Usuarios.Usuario;
 import com.mycompany.distribuidora.persistencia.PessoaPersistencia;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/*
+Pedro Souza Pinheiro da Silva Araujo - 202165560C
+Lucas Torres Martins - 202135023
+Gustavo do Bem Ferreira - 202065036AC
+João Nilson Quintão Barros - 202276007
+*/
 public class Interface {
 
     private JFrame tela;
@@ -27,6 +31,7 @@ public class Interface {
     private JTextField tfEmail;
     private JTextField tfTelefone;
     private JTextField tfSenha;
+    private JTextField tfEndereco;
 
     private PessoaPersistencia pessoaPersistencia;
 
@@ -164,10 +169,11 @@ public class Interface {
         String telefone = tfTelefone.getText();
         String email = tfEmail.getText();
         String senha = tfSenha.getText();
+        String endereco = tfEndereco.getText();
         
-        Pessoa usuario = new Pessoa(nome, telefone, senha, "ruas dos bobos numero 0", email,'c') {};
+        //Pessoa usuario = new Pessoa(nome, telefone, senha, endereco, email,'c', estoque) {};
 
-        pessoaPersistencia.save(usuario);
+        //pessoaPersistencia.save(usuario);
 
         JOptionPane.showMessageDialog(tela, "Cadastro finalizado com sucesso!");
     }

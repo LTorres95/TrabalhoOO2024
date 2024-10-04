@@ -17,7 +17,12 @@ import com.mycompany.distribuidora.model.Estoque.exceptions.ProdutoException;
 import com.mycompany.distribuidora.model.Estoque.exceptions.PromocaoException;
 
 import java.util.*;
-
+/*
+Pedro Souza Pinheiro da Silva Araujo - 202165560C
+Lucas Torres Martins - 202135023
+Gustavo do Bem Ferreira - 202065036AC
+João Nilson Quintão Barros - 202276007
+*/
 public abstract class Pessoa {
 
     protected String nome;
@@ -28,8 +33,6 @@ public abstract class Pessoa {
     protected Privilegio privilegio;
     protected Estoque estoque;
 
-    public Pessoa() {
-    }
 
     public Pessoa(String nome, String telefoneInput, String login, String endereco,
             String emailInput,char privilegio,Estoque estoque) throws EmailException, TelefoneException {
@@ -109,4 +112,3 @@ public abstract class Pessoa {
     public abstract  int getCodigoPedido();
     
 }
-
